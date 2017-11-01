@@ -7,3 +7,13 @@
 
   <button type="submit">Login</button>
 </form>
+
+<?php
+
+  if (!$_GET) {
+  }
+  elseif ($_GET["poging"] == "fout") {
+    echo "De combinatie van gebruikersnaam en wachtwoord is <b>onjuist</b>." . "<br>" . "Nog geen account? Klik " . "<a href=\"registreerForm.php\">hier</a>" . " om te registreren";
+  }
+
+?>

@@ -29,11 +29,7 @@
 
     }
     else {
-      $tekst = "U hebt geen geldige combinatie van e-mailadres en wachtwoord opgegeven.<br>
-      Maak een keuze: <br>
-      <a href=\"loginForm.php\">Opnieuw inloggen</a><br>
-      <a href=\"registreerForm.php\">Hier registreren</a><br>";
-      die($tekst);
+      die(header("Location:loginForm.php?poging=fout"));
     }
 
   }
