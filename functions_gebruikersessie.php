@@ -47,5 +47,3 @@ function logUitSessieGebruiker()
         }
     }
 
-
-    if (isIngelogd(){})
