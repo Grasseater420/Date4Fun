@@ -1,3 +1,6 @@
+
+
+
 <h2>Profiel</h2>
 <img src="./profielpics/henk.jpg" height="100" width="100">
 <p>Naam</p>
