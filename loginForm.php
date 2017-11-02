@@ -13,7 +13,7 @@
   if (!$_GET) {
   }
   elseif ($_GET["poging"] == "fout") {
-    echo "De combinatie van gebruikersnaam en wachtwoord is <b>onjuist</b>." . "<br>" . "Nog geen account? Klik " . "<a href=\"registreerForm.php\">hier</a>" . " om te registreren";
+    echo "De combinatie van gebruikersnaam en wachtwoord is <b>onjuist</b>." . "<br>" . "Nog geen account? Klik " . "<a href=\"registratie_home.php\">hier</a>" . " om te registreren";
   }
 
 ?>
