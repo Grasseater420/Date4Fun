@@ -9,11 +9,31 @@
     die("<br> Database query mislukt.");
   }
 
+  $test = array();
+
   while($event = mysqli_fetch_assoc($result)) {
-    echo "<tr>";
-    echo "<td>" . $event['titel'] . "</td>";
-    echo "<td>" . $event['omschrijving'] . "</td>";
+    $test[] = array(
+        'titel'         => $event['titel'],
+        'omschrijving'  => $event['omschrijving'],
+        'locatie'       => $event['locatie']
+    );
   }
+
+  echo $test[0]['titel'];
+  echo "<br>";
+  echo $test[0]['omschrijving'];
+  echo "<br>";
+  echo $test[0]['locatie'];
+  echo "<br><br>";
+
+  echo $test[1]['titel'];
+  echo "<br>";
+  echo $test[1]['omschrijving'];
+  echo "<br>";
+  echo $test[1]['locatie'];
+  echo "<br><br>";
+
+  echo count($test);
 
 ?>
 
