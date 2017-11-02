@@ -22,7 +22,7 @@
         echo "Je bent Admin";
         exit();
       }
-      elseif ($isAdmin ==false) {
+      else {
         echo "Je bent Gebruiker";
         exit();
       }
