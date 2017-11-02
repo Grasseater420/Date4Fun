@@ -1,3 +1,22 @@
+<?php
+
+  include "config.php";
+
+  $query = "SELECT * FROM events";
+  $result = mysqli_query($db, $query);
+
+  if (!$result) {
+    die("<br> Database query mislukt.");
+  }
+
+  while($event = mysqli_fetch_assoc($result)) {
+    echo "<tr>";
+    echo "<td>" . $event['titel'] . "</td>";
+    echo "<td>" . $event['omschrijving'] . "</td>";
+  }
+
+?>
+
 <html>
   <head>
     <title>Date4Fun Events</title>
@@ -36,19 +55,6 @@
     </table>
   </BODY>
 </HTML>
-
-<?php
-
-  include "config.php";
-
-  $query = "SELECT * FROM events WHERE eventid ='";
-  $result = mysqli_query($db, $query);
-
-  if (!$result) {
-    die("<br> Database query mislukt.");
-  }
-
-?>
 
 <?php
 // Titel

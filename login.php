@@ -26,7 +26,7 @@
         exit();
       }
       else {
-        echo "Je bent Gebruiker";
+        header("Location:profiel.php");
         exit();
       }
 
