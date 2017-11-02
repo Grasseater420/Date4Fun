@@ -14,6 +14,9 @@
       $_SESSION["timeout"]   = time() + 120;
 			$_SESSION["gebruiker"] = $gebruiker;
 
+			//ToDo:
+			//Pull gebruiker ID uit database en zet die in sessie
+
       while ($row = mysqli_fetch_assoc($result)) {
         $isAdmin = $row['admin'];
       }
