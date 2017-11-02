@@ -1,8 +1,26 @@
 
+<?php
+
+include "config.php";
+
+
+
+$query = "SELECT * FROM profielen WHERE gebruikers_id='2'";
+$result = mysqli_query($db, $query);
+
+if (!$result) {
+    die("<br> Database query mislukt.");
+}
+
+while($profiel = mysqli_fetch_assoc($result)) {
+?>
 
 
 <h2>Profiel</h2>
-<img src="./profielpics/henk.jpg" height="100" width="100">
+
+
+
+<img src="./profielpics<?php echo $profiel['foto']; ?>" height="100" width="100">
 <p>Naam</p>
 <p>status</p>
 <button type="button">Stuur bericht</button>
@@ -12,16 +30,16 @@
 
 <h2>Informatie</h2>
 <p>Geintresseerd in:</p>
-<p>Ethniciteit:</p>
-<p>Roken:</p>
-<p>Drinken:</p>
-<p>Lichaamsbouw:</p>
+<p>Ethniciteit: <?php echo $profiel['etniciteit']; ?></p>
+<p>Roken: <?php echo $profiel['roken']; ?></p>
+<p>Drinken: <?php echo $profiel['drinken']; ?></p>
+<p>Lichaamsbouw: <?php echo $profiel['lichaam']; ?></p>
 <button type="button">Aanpassen</button>
 
 <hr>
 
 <h2>Over mij</h2>
-<p>Lorem ipsum, bla</p>
+<p><?php echo $profiel['overmij']; ?></p>
 <button type="button">Aanpassen</button>
 
 <hr>
@@ -30,3 +48,5 @@
 <p>Film</p>
 <p>Movie</p>
 <button type="button">Aanpassen</button>
+
+<?php } ?>
