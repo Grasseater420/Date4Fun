@@ -53,7 +53,7 @@
         <th>Event 2</th>
       </tr>
        <tr>
-        <td>Omschrijving 1</td>
+        <td>Omschrijving 21</td>
         <td>Omschrijving 2</td>
       </tr> 
       <tr>
