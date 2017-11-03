@@ -1,3 +1,17 @@
-table#sjoerddeboer {
-    background-color: lightblue;
+div#eventsWrapper {
+  width: 640px;
+}
+div#event1 {
+  width: 320px;
+  float: left;
+}
+div#event2 {
+  width: 320px;
+  float: right;
+}
+div.titel {
+  height: 30px;
+}
+div.omschrijving {
+  height: 100px;
 }
