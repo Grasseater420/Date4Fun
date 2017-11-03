@@ -1,0 +1,3 @@
+Favoriete film (GebruikersID)
+
+SELECT favorietefilm.titel FROM favorietefilm INNER JOIN profielen ON favorietefilm.film_id=profielen.favorietefilm WHERE profielen.gebruikers_id = 1
