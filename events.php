@@ -40,12 +40,12 @@
     while($row = mysqli_fetch_assoc($result)){
         echo "
           <div class='event'>
-            <h3>" . $row['titel']         . "</h3>
-            <p>"  . $row['omschrijving']  . "</p>
-            <p>"  . $row['locatie']       . "</p>
-            <p>"  . $row['prijs']         . "</p>
+            <h3>"         . $row['titel']         . "</h3>
+            <p>"          . $row['omschrijving']  . "</p>
+            <p>"          . $row['locatie']       . "</p>
+            <p>"          . $row['prijs']         . "</p>
             <button type=\"button\">Winkelmandje</button><br>
-            <img scr=\"" . $row['foto'] . "\" width=\"320px\" height=\"480px\">
+            <img scr=\""  . $row['foto'] . "\" width=\"320px\" height=\"480px\">
           </div>
         ";
     }
