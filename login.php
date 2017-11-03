@@ -2,6 +2,7 @@
 
   session_start();
   include('config.php');
+  include('functions_gebruikersessie.php'); // Jim's sessie script
 
   if (!empty($_POST)) {
     $gebruiker  = mysqli_real_escape_string($db, $_POST['gebruikersnaam']);
@@ -10,8 +11,8 @@
     $result     = mysqli_query($db, $query) or die("FOUT : " . mysqli_error());
 
     if (mysqli_num_rows($result) > 0) {
-      $_SESSION["auth"]      = true;
-      $_SESSION["timeout"]   = time() + 120;
+      //$_SESSION["auth"]      = true;
+      //$_SESSION["timeout"]   = time() + 120;
 			$_SESSION["gebruiker"] = $gebruiker;
 
 			//ToDo:
@@ -33,6 +34,13 @@
   			$row = mysqli_fetch_array($result);
 
   		  $total = $row[0];
+                  
+        //Sessie starten (zie functions_gebruikersessie.php
+        //@Param gebruiker_ID
+        logInSessieGebruiker($total);
+                  
+                  
+                  
         header("Location:profiel.php?id=".$total."");
         exit();
       }
