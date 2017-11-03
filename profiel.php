@@ -55,9 +55,45 @@ while($profiel = mysqli_fetch_assoc($result)) {
 
     <hr>
 
-    <h2>Favorieten</h2>
-    <p>Film</p>
-    <p>Movie</p>
-    <button type="button">Aanpassen</button>
+    <?php } ?>
 
+
+
+
+
+
+    <h2>Favorieten</h2>
+
+<?php
+
+$query = "SELECT favorietefilm.titel FROM favorietefilm INNER JOIN profielen ON favorietefilm.film_id=profielen.favorietefilm WHERE profielen.gebruikers_id = $gebruiker_id";
+
+
+$result = mysqli_query($db, $query);
+
+if (!$result) {
+    die("<br> Database query mislukt.");
+}
+
+while($film = mysqli_fetch_assoc($result)) {
+    ?>
+
+    <p>Film <?php echo $film['titel']; ?></p>
 <?php } ?>
+<?php
+
+$query = "SELECT favorietemuziek.titel FROM favorietemuziek INNER JOIN profielen ON favorietemuziek.muziek_id=profielen.favorietemuziek WHERE profielen.gebruikers_id = $gebruiker_id";
+
+
+$result = mysqli_query($db, $query);
+
+if (!$result) {
+    die("<br> Database query mislukt.");
+}
+
+while($muziek = mysqli_fetch_assoc($result)) {
+    ?>
+
+    <p>Muziek <?php echo $muziek['titel']; ?></p>
+<?php } ?>
+    <button type="button">Aanpassen</button>
