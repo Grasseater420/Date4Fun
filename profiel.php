@@ -4,8 +4,19 @@
 include "config.php";
 
 
+if(isset($_GET['id']))
+{
 
-$query = "SELECT * FROM profielen WHERE gebruikers_id='2'";
+    $gebruiker_id = $_GET['id'];
+
+}
+else{
+    $gebruiker_id = 1;
+}
+
+$query = "SELECT * FROM profielen WHERE gebruikers_id=$gebruiker_id";
+
+
 $result = mysqli_query($db, $query);
 
 if (!$result) {
