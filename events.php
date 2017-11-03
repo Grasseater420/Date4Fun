@@ -64,5 +64,8 @@
     <h1>Date4Provit</h1>
     <h1>Logo</h1>
     <?php renderEvents() ?>
+    
+    test
+    
   </body>
 </html>
