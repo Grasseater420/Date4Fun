@@ -32,7 +32,22 @@ while($profiel = mysqli_fetch_assoc($result)) {
 
 
     <img src="./profielpics<?php echo $profiel['foto']; ?>" height="100" width="100">
-    <p>Naam</p>
+    <?php
+
+    $query = "SELECT voornaam FROM gebruikers WHERE gebruikers.gebruiker_id =  $gebruiker_id";
+
+
+    $result = mysqli_query($db, $query);
+
+    if (!$result) {
+        die("<br> Database query mislukt.");
+    }
+
+    while($gebruiker = mysqli_fetch_assoc($result)) {
+        ?>
+
+        <p>Naam <?php echo $gebruiker['voornaam']; ?></p>
+    <?php } ?>
     <p>status</p>
     <button type="button">Stuur bericht</button>
 
