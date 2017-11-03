@@ -20,6 +20,21 @@ gegevens profiel aanpassen
 update profielen set etniciteit = 'invullen aub', 
 roken = 'invullen aub', 
 drinken = 'invullen aub', 
-lichaam = 'invullen aub', 
-overmij = 'invullen aub' 
+lichaam = 'invullen aub',  
 where gebruikers_id = 3
+
+update profielen set overmij = 'invullen aub'
+where gebruikers_id = 3
+
+muziek updaten
+update profielen set favorietemuziek = 1
+where gebruikers_id = 3
+
+update profielen set favorietefilm = 1 
+where gebruikers_id = 3
+
+nieuwe film
+insert into favorietefilm (titel) values ('ironman')
+nieuwe muziek
+insert into favorietemuziek (titel) values ('ironman')
+
