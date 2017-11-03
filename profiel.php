@@ -4,14 +4,12 @@
 include "config.php";
 
 
-if(isset($_GET['id']))
+if (isset($_GET['id']) && !is_null($_GET['id']) && is_numeric($_GET['id']))
 {
-
     $gebruiker_id = $_GET['id'];
-
 }
 else{
-    $gebruiker_id = 1;
+    die("Er is een fout opgetreden, ongeldige input ontvangen: ".$_GET['id']);
 }
 
 $query = "SELECT * FROM profielen WHERE gebruikers_id=$gebruiker_id";
@@ -23,24 +21,42 @@ if (!$result) {
     die("<br> Database query mislukt.");
 }
 
+
+if (mysqli_num_rows($result) > 0)
+{
+
 while($profiel = mysqli_fetch_assoc($result)) {
     ?>
 
 
-    <h2>Profiel</h2>
 
 
 
+
+    <?php
+
+    $query = "SELECT voornaam FROM gebruikers WHERE gebruikers.gebruiker_id =  $gebruiker_id";
+
+
+    $result = mysqli_query($db, $query);
+
+    if (!$result) {
+        die("<br> Database query mislukt.");
+    }
+
+    while($gebruiker = mysqli_fetch_assoc($result)) {
+        ?>
+
+        <h2>Profiel van <?php echo $gebruiker['voornaam']; ?></h2>
+    <?php } ?>
     <img src="./profielpics<?php echo $profiel['foto']; ?>" height="100" width="100">
-    <p>Naam</p>
-    <p>status</p>
     <button type="button">Stuur bericht</button>
 
 
     <hr>
 
     <h2>Informatie</h2>
-    <p>Geintresseerd in:</p>
+    <p>Geintresseerd in: <?php echo $profiel['geintereseerd']; ?></p>
     <p>Ethniciteit: <?php echo $profiel['etniciteit']; ?></p>
     <p>Roken: <?php echo $profiel['roken']; ?></p>
     <p>Drinken: <?php echo $profiel['drinken']; ?></p>
@@ -97,3 +113,14 @@ while($muziek = mysqli_fetch_assoc($result)) {
     <p>Muziek <?php echo $muziek['titel']; ?></p>
 <?php } ?>
     <button type="button">Aanpassen</button>
+    <?php 
+    
+    }
+    else { 
+        
+    echo "<h2>Gebruiker met id: $gebruiker_id niet gevonden in database</h2>";
+        
+    }
+    
+
+?>

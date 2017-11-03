@@ -58,12 +58,12 @@ Velden met het * zijn verplicht
 </form>
 <?php
 	}
-	
-	else{	
-		
+
+	else{
+
 		if (!empty($_POST["voornaam"]) && !empty($_POST["achternaam"]) && !empty($_POST["gebruikersnaam"]) && !empty($_POST["wachtwoord"]) && !empty($_POST["email"]) && !empty($_POST["geboortedatum"]) && isset($_POST["voorwaarden"])){
-			include "connection.php";
-			
+			include "config.php";
+
 			$voornaam = $_POST["voornaam"];
 			$tussenvoegsel = $_POST["tussenvoegsel"];
 			$achternaam = $_POST["achternaam"];
@@ -71,36 +71,65 @@ Velden met het * zijn verplicht
 			$wachtwoord = $_POST["wachtwoord"];
 			$email = $_POST["email"];
 			$geboortedatum = $_POST["geboortedatum"];
-			
+
 			$query = "SELECT * FROM gebruikers WHERE gebruikersnaam = '".$gebruikersnaam."'";
 			$result = mysqli_query($db, $query);
 			if (mysqli_num_rows($result) >= 1){
 				echo "De gebruikersnaam bestaat al.";
 			}
-	
+
 			else {
-				
-			$query = "INSERT INTO `gebruikers` (`ID`, `voornaam`, `tussenvoegsel`, `achternaam`, `gebruikersnaam`, `wachtwoord`, `email`, `geboortedatum`) 
-						VALUES (NULL, '$voornaam', '$tussenvoegsel', '$achternaam', '$gebruikersnaam', '$wachtwoord', '$email', '$geboortedatum')";
-	
+
+			$query = "INSERT INTO `gebruikers` (`gebruiker_id`, `admin`, `voornaam`, `tussenv`, `achternaam`, `gebruikersnaam`, `wachtwoord`, `email`, `geboortedatum`)
+						VALUES (NULL, '0', '$voornaam', '$tussenvoegsel', '$achternaam', '$gebruikersnaam', '$wachtwoord', '$email', '$geboortedatum')";
+
 			$result = mysqli_query($db, $query);
-	
+
 			echo "<h3>De volgende gegevens zijn ingevuld:</h3>";
 			echo "Naam: <b>$voornaam $tussenvoegsel $achternaam</b><br>";
 			echo "Gebruikersnaam: <b>$gebruikersnaam</b><br>";
 			echo "Wachtwoord: <b>$wachtwoord</b><br>";
 			echo "E-mailadres: <b>$email</b><br>";
-			echo "Geboortedatum: <b>$geboortedatum</b>";
+			echo "Geboortedatum: <b>$geboortedatum</b><br><br>";
+
+			//Aanmaken profiel
+			//GebruikersID verkrijgen
+			$query = "SELECT gebruiker_id FROM `gebruikers` WHERE gebruikersnaam = '".$gebruikersnaam."'";
+			$result = mysqli_query($db, $query);
+
+			$row = mysqli_fetch_array($result);
+
+		  $total = $row[0];
+
+			//Aanmaken profiel met query
+			$query = "INSERT INTO `profielen` (`gebruikers_id`) VALUES ('$total');";
+			$result = mysqli_query($db, $query);
+
+			//Welkom bericht, doorsturen naar Login pagina
+			echo "Welkom ".$voornaam.", bedankt voor het registreren.<br>";
+			echo "<a href='http://localhost/Date4Fun/loginForm.php'>Login!</a>";
+
+			//function stuurMail($email, $voornaam){
+				//$to = $email;
+				//$subject = "Welkom ".$voornaam."!";
+				//$message = "Hoi ".$voornaam."!\r\nWelkom bij Date4Fun!\r\nBedankt voor het registreren bij onze website.\r\nKlik op onderstaande link om je profiel klaar te maken voor de strijd!";
+				//$headers = "From webmaster@date4fun.nl" . "\r\n" . "Reply to: webmaster@date4fun.nl" . "\r\n" . "X-Mailer: PHP/" . phpversion();
+
+				//mail($to, $subject, $message, "From: webmaster@date4fun.nl");
+			//}
+
+			//stuurMail($email, $voornaam);
+
 			}
-			mysqli_close($db); 
+			mysqli_close($db);
 					//sessiestart
 					//header("location: /welkom.php");
 		}
-		
+
 		if (empty($_POST["voornaam"]) || empty($_POST["achternaam"]) || empty($_POST["gebruikersnaam"]) || empty($_POST["wachtwoord"]) || empty($_POST["email"]) || empty($_POST["geboortedatum"]) || !isset($_POST["voorwaarden"])){
 			echo "Sorry! De gebruiker kan niet geregistreerd worden.<br /><br />";//Check of alles goed is ingevuld, zo niet, dan bericht, zo ja, post naar database en redirect naar welkom.php
 		}
-		
+
 		if (empty($_POST["voornaam"])){
 			echo "Voornaam is niet ingevuld.<br />";
 		}
@@ -108,27 +137,27 @@ Velden met het * zijn verplicht
 		if (empty($_POST["achternaam"])){
 			echo "Achternaam is niet ingevuld.<br />";
 		}
-		
+
 		if (empty($_POST["gebruikersnaam"])){
 			echo "Gebruikersnaam is niet ingevuld.<br />";
 		}
-		
+
 		if (empty($_POST["wachtwoord"])){
 			echo "Wachtwoord is niet ingevuld.<br />";
 		}
-		
+
 		if (empty($_POST["email"])){
 			echo "E-mailadres is niet ingevuld.<br />";
 		}
-		
+
 		if (empty($_POST["geboortedatum"])){
 			echo "Geboortedatum is niet ingevuld.<br />";
 		}
-		
+
 		if (!isset($_POST["voorwaarden"])){
 			echo "De algemene voorwaarden zijn niet geaccepteerd.";
 		}
-	
+
 	}
 ?>
 </body>
