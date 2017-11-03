@@ -16,7 +16,7 @@
     include "connection.php";
 
     //De Query om titel en omschrijving te verkijgen
-    $query = "SELECT membership_id, titel, omschrijving FROM `membership`";
+    $query = "SELECT membership.membership_id, membership.titel, membership.omschrijving, producten.prijs FROM membership INNER JOIN producten ON producten.membership_id=membership.membership_id";
     $result = mysqli_query($db, $query);
 
     //Resultaten naar het scherm
@@ -25,7 +25,7 @@
         <div class='membership'>
           <h3>".$row['titel']."</h3>
           <p>".$row['omschrijving']."</p>
-          <h2>Prijs</h2>
+          <h2>€".$row['prijs']."</h2>
           <button type='button'>In Winkelwagen</button>
         </div>
       ";
