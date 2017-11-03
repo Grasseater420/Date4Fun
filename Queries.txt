@@ -17,7 +17,8 @@ where muziek_id = (select favorietemuziek FROM profielen
 
 gegevens profiel aanpassen
 
-update profielen set etniciteit = 'invullen aub', 
+update profielen set geintereseerd = 'invullen aub',
+etniciteit = 'invullen aub', 
 roken = 'invullen aub', 
 drinken = 'invullen aub', 
 lichaam = 'invullen aub',  
