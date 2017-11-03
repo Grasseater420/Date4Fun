@@ -27,11 +27,10 @@ while($profiel = mysqli_fetch_assoc($result)) {
     ?>
 
 
-    <h2>Profiel</h2>
 
 
 
-    <img src="./profielpics<?php echo $profiel['foto']; ?>" height="100" width="100">
+
     <?php
 
     $query = "SELECT voornaam FROM gebruikers WHERE gebruikers.gebruiker_id =  $gebruiker_id";
@@ -46,16 +45,16 @@ while($profiel = mysqli_fetch_assoc($result)) {
     while($gebruiker = mysqli_fetch_assoc($result)) {
         ?>
 
-        <p>Naam <?php echo $gebruiker['voornaam']; ?></p>
+        <h2>Profiel van <?php echo $gebruiker['voornaam']; ?></h2>
     <?php } ?>
-    <p>status</p>
+    <img src="./profielpics<?php echo $profiel['foto']; ?>" height="100" width="100">
     <button type="button">Stuur bericht</button>
 
 
     <hr>
 
     <h2>Informatie</h2>
-    <p>Geintresseerd in:</p>
+    <p>Geintresseerd in: <?php echo $profiel['geintereseerd']; ?></p>
     <p>Ethniciteit: <?php echo $profiel['etniciteit']; ?></p>
     <p>Roken: <?php echo $profiel['roken']; ?></p>
     <p>Drinken: <?php echo $profiel['drinken']; ?></p>
