@@ -26,7 +26,14 @@
         exit();
       }
       else {
-        header("Location:profiel.php");
+        //GebruikersID verkrijgen
+  			$query = "SELECT gebruiker_id FROM `gebruikers` WHERE gebruikersnaam = '".$gebruiker."'";
+  			$result = mysqli_query($db, $query);
+
+  			$row = mysqli_fetch_array($result);
+
+  		  $total = $row[0];
+        header("Location:profiel.php?id=".$total."");
         exit();
       }
 
