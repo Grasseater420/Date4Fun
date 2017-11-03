@@ -14,3 +14,12 @@ SELECT favorietemuziek.titel FROM favorietemuziek INNER JOIN profielen ON favori
 select titel from favorietefilm
 where muziek_id = (select favorietemuziek FROM profielen 
                 where gebruiker_id = 2)
+
+gegevens profiel aanpassen
+
+update profielen set etniciteit = 'invullen aub', 
+roken = 'invullen aub', 
+drinken = 'invullen aub', 
+lichaam = 'invullen aub', 
+overmij = 'invullen aub' 
+where gebruikers_id = 3
