@@ -5,3 +5,12 @@ SELECT favorietefilm.titel FROM favorietefilm INNER JOIN profielen ON favorietef
 select titel from favorietefilm
 where film_id = (select favorietefilm FROM profielen 
                 where gebruiker_id = 2)
+   
+                
+Favoriete muziek
+
+SELECT favorietemuziek.titel FROM favorietemuziek INNER JOIN profielen ON favorietemuziek.film_id=profielen.favorietemuziek WHERE profielen.gebruikers_id = 1
+
+select titel from favorietefilm
+where muziek_id = (select favorietemuziek FROM profielen 
+                where gebruiker_id = 2)
