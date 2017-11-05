@@ -2,7 +2,6 @@
 
   function renderNavbar() {
 
-    session_start();
 
     include('config.php');
     include('functions_gebruikersessie.php');

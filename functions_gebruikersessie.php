@@ -7,6 +7,9 @@
  */
 
 
+session_start();
+
+
 // Hieronder de functies die gebruikt worden tijdens de het inloggen
 
 function logInSessieGebruiker($id)
@@ -18,7 +21,6 @@ function logInSessieGebruiker($id)
     }
     else {
 
-        session_start();
         $_SESSION['gebruikers_id'] = $id;
     }
 

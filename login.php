@@ -41,8 +41,6 @@
                   
  
        logInSessieGebruiker($total);
-               var_dump($_SESSION);
-        exit();
         
       
                   
