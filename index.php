@@ -11,17 +11,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    
-    <?php include 'header.php'; ?>
+
+    <?php include 'header.php';
+    renderNavbar();?>
 
 <div class="container">
- 
+
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Niet hier op klikken..</button>
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -102,10 +103,10 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Ik begrijpt het..</button>
         </div>
       </div>
-      
+
     </div>
   </div>
-  
+
 </div>
 
 </body>

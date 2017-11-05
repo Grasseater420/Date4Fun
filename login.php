@@ -55,15 +55,13 @@
     }
     else {
       // die(header("Location:header.php?poging=fout"));
-      $error_msg = "<div class=\"loginModal\">
-                      De combinatie van gebruikersnaam en wachtwoord is <b>onjuist</b>.<br><br>
-                    </div>";
+      $error_msg = "De combinatie van gebruikersnaam en wachtwoord is <b>onjuist</b>.<br><br>
+                    <button type=\"submit\" class=\"btn btn-default\">Login</button>
+                    <a class=\"btn btn-default\" href=\"./registreren.php\">Registreren</a>
+                    <button type=\"submit\" class=\"btn btn-default pull-right\" formaction=\"./wachtwoordvergeten.php\">Wachtwoord vergeten?</button>";
       $script =  "<script> $(document).ready(function(){ $('#loginModal').modal('show'); }); </script>";
     }
 
-  }
-  else {
-    header("Location:loginForm.php");
   }
 
 ?>
