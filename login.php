@@ -41,15 +41,15 @@
 
 
        logInSessieGebruiker($total);
-        
-      
-                  
-                  
-                  
+
+
+
+
+
         header("Location:profiel.php?id=".$total."");
         exit();
       }
-
+      
     }
     else {
       // die(header("Location:header.php?poging=fout"));

@@ -1,11 +1,14 @@
 <!DOCTYPE HTML>
-<html>
 <head>
-<title>Date4Fun</title>
+  <title>Date4Fun</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <?php include 'header.php'; renderNavbar(); renderJumbotron()?>
 </head>
 <body>
-<h1>Date4Fun</h1>
-<h1>Logo</h1>
 <h2>Welkom bij Date4Fun! Zin in een spannende date? Registreer dan nu!</h2>
 
 <?php

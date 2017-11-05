@@ -1,4 +1,12 @@
-
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <?php include 'header.php'; renderNavbar();?>
+</head>
 <?php
 
 include "config.php";
@@ -113,14 +121,14 @@ while($muziek = mysqli_fetch_assoc($result)) {
     <p>Muziek <?php echo $muziek['titel']; ?></p>
 <?php } ?>
     <button type="button">Aanpassen</button>
-    <?php 
-    
+    <?php
+
     }
-    else { 
-        
+    else {
+
     echo "<h2>Gebruiker met id: $gebruiker_id niet gevonden in database</h2>";
-        
+
     }
-    
+
 
 ?>
