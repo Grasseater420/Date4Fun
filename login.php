@@ -2,7 +2,7 @@
 
   include('config.php');
   include('functions_gebruikersessie.php'); // Jim's sessie script
-  
+
 
 
   if (!empty($_POST)) {
@@ -35,26 +35,30 @@
   			$row = mysqli_fetch_array($result);
 
   		  $total = $row[0];
-                  
+
         //Sessie starten (zie functions_gebruikersessie.php
         //@Param gebruiker_ID
-                  
- 
+
+
        logInSessieGebruiker($total);
                var_dump($_SESSION);
         exit();
-        
-      
-                  
-                  
-                  
+
+
+
+
+
         header("Location:profiel.php?id=".$total."");
         exit();
       }
 
     }
     else {
-      die(header("Location:loginForm.php?poging=fout"));
+      // die(header("Location:header.php?poging=fout"));
+      $error_msg = "<div class=\"loginModal\">
+                      De combinatie van gebruikersnaam en wachtwoord is <b>onjuist</b>.<br><br>
+                    </div>";
+      $script =  "<script> $(document).ready(function(){ $('#loginModal').modal('show'); }); </script>";
     }
 
   }
