@@ -41,13 +41,11 @@
 
 
        logInSessieGebruiker($total);
-               var_dump($_SESSION);
-        exit();
-
-
-
-
-
+        
+      
+                  
+                  
+                  
         header("Location:profiel.php?id=".$total."");
         exit();
       }
