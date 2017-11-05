@@ -9,7 +9,7 @@ if (isset($_GET['id']) && !is_null($_GET['id']) && is_numeric($_GET['id']))
     $gebruiker_id = $_GET['id'];
 }
 else{
-    die("Er is een fout opgetreden, ongeldige input ontvangen: ".$_GET['id']);
+    die("Er is een fout opgetreden, ongeldige input ontvangen");
 }
 
 $query = "SELECT * FROM profielen WHERE gebruikers_id=$gebruiker_id";

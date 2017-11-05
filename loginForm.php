@@ -1,3 +1,20 @@
+
+
+<?php
+
+include 'functions_gebruikersessie.php';
+
+if (isIngelogd())
+{
+            header("Location:profiel.php?id=".$_SESSION['gebruikers_id']);
+        exit();
+}
+
+
+
+?>
+
+
 <form action="login.php" method="POST">
   <label><b>Gebruikersnaam</b></label><br>
   <input type="text" maxlength="20" placeholder="gebruikersnaam" name="gebruikersnaam" required><br>

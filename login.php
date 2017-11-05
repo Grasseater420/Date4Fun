@@ -1,8 +1,9 @@
 <?php
 
-  session_start();
   include('config.php');
   include('functions_gebruikersessie.php'); // Jim's sessie script
+  
+
 
   if (!empty($_POST)) {
     $gebruiker  = mysqli_real_escape_string($db, $_POST['gebruikersnaam']);
@@ -37,7 +38,13 @@
                   
         //Sessie starten (zie functions_gebruikersessie.php
         //@Param gebruiker_ID
-        logInSessieGebruiker($total);
+                  
+ 
+       logInSessieGebruiker($total);
+               var_dump($_SESSION);
+        exit();
+        
+      
                   
                   
                   
