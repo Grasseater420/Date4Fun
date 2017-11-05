@@ -127,7 +127,7 @@
       include "header.php";
 
       renderNavbar();
-      renderJumbotron();
+      // renderJumbotron();
 
     ?>
   </head>
