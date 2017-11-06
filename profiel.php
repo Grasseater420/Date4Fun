@@ -42,6 +42,16 @@ $query = "SELECT favorietefilm.titel FROM favorietefilm INNER JOIN profielen ON 
 $result = mysqli_query($db, $query);
 $film = mysqli_fetch_assoc($result);
 
+          if ($_SESSION['gebruikers_id'] == $gebruiker_id)
+          {
+              $eigenprofiel= true;
+          }
+          else {
+              $eigenprofiel = false;
+          }
+          
+         
+
 
     ?>
   </head>
@@ -56,7 +66,19 @@ $film = mysqli_fetch_assoc($result);
         <div class="col-sm-10">
              <h1 class="">Profiel van <?php echo $gebruiker['gebruikersnaam']; ?></h1>
          
-          <button type="button" class="btn btn-info">Stuur mij een bericht</button>
+             
+          
+          <?php
+          
+          
+          if ($eigenprofiel)
+          {
+              echo "<h2><span class=\"label label-info\">U heeft een goldmembership deze verloopt op 20-11-2017</span></h2> ";
+          }
+          else {
+              echo "<button type=\"button\" class=\"btn btn-info\">Stuur mij een bericht</button>";
+          }
+          ?>
 <br>
         </div>
       <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profiel foto" class="img-circle img-responsive" src="./profielpics<?php echo $profiel['foto']; ?>"></a>
