@@ -9,11 +9,11 @@
   <h2>Welkom bij Date4Fun Memberships!</h2>
 
   <?php
-  include "connection.php";
+  include "config.php";
   function laatMemZien(){
     //Connectie met de database
     //Functie om membership_prijs te verkrijgen MOET NOG KOMEN
-    include "connection.php";
+    include "config.php";
 
     //De Query om titel en omschrijving te verkijgen
     $query = "SELECT membership.membership_id, membership.titel, membership.omschrijving, producten.prijs FROM membership INNER JOIN producten ON producten.membership_id=membership.membership_id";
