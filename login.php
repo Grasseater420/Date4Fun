@@ -1,9 +1,7 @@
 <?php
 
-  include('config.php');
-  include('functions_gebruikersessie.php'); // Jim's sessie script
-
-
+  include 'config.php';
+  include 'functions_gebruikersessie.php';
 
   if (!empty($_POST)) {
     $gebruiker  = mysqli_real_escape_string($db, $_POST['gebruikersnaam']);
@@ -12,54 +10,36 @@
     $result     = mysqli_query($db, $query) or die("FOUT : " . mysqli_error());
 
     if (mysqli_num_rows($result) > 0) {
-      //$_SESSION["auth"]      = true;
-      //$_SESSION["timeout"]   = time() + 120;
 			$_SESSION["gebruiker"] = $gebruiker;
-
-			//ToDo:
-			//Pull gebruiker ID uit database en zet die in sessie
 
       while ($row = mysqli_fetch_assoc($result)) {
         $isAdmin = $row['admin'];
       }
 
       if ($isAdmin == true) {
-        echo "Je bent Admin";
+        header("Location:admin.php");
         exit();
       }
       else {
-        //GebruikersID verkrijgen
-  			$query = "SELECT gebruiker_id FROM `gebruikers` WHERE gebruikersnaam = '".$gebruiker."'";
-  			$result = mysqli_query($db, $query);
+  			$query    = "SELECT gebruiker_id FROM `gebruikers` WHERE gebruikersnaam = '". $gebruiker ."'";
+  			$result   = mysqli_query($db, $query);
+  			$row      = mysqli_fetch_array($result);
+  		  $total    = $row[0];
 
-  			$row = mysqli_fetch_array($result);
-
-  		  $total = $row[0];
-
-        //Sessie starten (zie functions_gebruikersessie.php
-        //@Param gebruiker_ID
-
-
-       logInSessieGebruiker($total);
-
-
-
-
+        logInSessieGebruiker($total);
 
         header("Location:profiel.php?id=".$total."");
         exit();
       }
-      
     }
     else {
-      // die(header("Location:header.php?poging=fout"));
-      $error_msg = "De combinatie van gebruikersnaam en wachtwoord is <b>onjuist</b>.<br><br>
+
+      $error_msg  = "De combinatie van gebruikersnaam en wachtwoord is <b>onjuist</b>.<br><br>
                     <button type=\"submit\" class=\"btn btn-default\">Login</button>
                     <a class=\"btn btn-default\" href=\"./registreren.php\">Registreren</a>
-                    <button type=\"submit\" class=\"btn btn-default pull-right\" formaction=\"./wachtwoordvergeten.php\">Wachtwoord vergeten?</button>";
-      $script =  "<script> $(document).ready(function(){ $('#loginModal').modal('show'); }); </script>";
+                    <a class=\"btn btn-default pull-right\" href=\"./wachtwoordvergeten.php?gebruiker=" . $gebruiker . "\">Wachtwoord vergeten?</a>";
+
+      $script     = "<script> $(document).ready(function(){ $('#loginModal').modal('show'); }); </script>";
     }
-
   }
-
 ?>
