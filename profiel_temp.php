@@ -9,8 +9,39 @@
     <?php
 
       include "header.php";
+      include "config.php";
 
       renderNavbar();
+      
+      
+      
+
+
+if (isset($_GET['id']) && !is_null($_GET['id']) && is_numeric($_GET['id']))
+{
+    $gebruiker_id = $_GET['id'];
+}
+else{
+    die("Er is een fout opgetreden, ongeldige input ontvangen");
+}
+
+
+$query = "SELECT * FROM profielen WHERE gebruikers_id=$gebruiker_id";
+$result = mysqli_query($db, $query);
+$profiel = mysqli_fetch_assoc($result);
+
+$query = "SELECT * FROM gebruikers WHERE gebruikers.gebruiker_id =  $gebruiker_id";
+$result = mysqli_query($db, $query);
+$gebruiker = mysqli_fetch_assoc($result);
+
+$query = "SELECT favorietemuziek.titel FROM favorietemuziek INNER JOIN profielen ON favorietemuziek.muziek_id=profielen.favorietemuziek WHERE profielen.gebruikers_id = $gebruiker_id";
+$result = mysqli_query($db, $query);
+$muziek= mysqli_fetch_assoc($result);
+
+$query = "SELECT favorietefilm.titel FROM favorietefilm INNER JOIN profielen ON favorietefilm.film_id=profielen.favorietefilm WHERE profielen.gebruikers_id = $gebruiker_id";
+$result = mysqli_query($db, $query);
+$film = mysqli_fetch_assoc($result);
+
 
     ?>
   </head>
@@ -23,12 +54,12 @@
 <div class="container target">
     <div class="row">
         <div class="col-sm-10">
-             <h1 class="">Starfox221</h1>
+             <h1 class="">Profiel van <?php echo $gebruiker['gebruikersnaam']; ?></h1>
          
-          <button type="button" class="btn btn-info">Send me a message</button>
+          <button type="button" class="btn btn-info">Stuur mij een bericht</button>
 <br>
         </div>
-      <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.rlsandbox.com/img/profile.jpg"></a>
+      <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profiel foto" class="img-circle img-responsive" src="./profielpics<?php echo $profiel['foto']; ?>"></a>
 
         </div>
     </div>
@@ -37,59 +68,55 @@
         <div class="col-sm-3">
             <!--left col-->
             <ul class="list-group">
-                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span> 2.13.2014</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span> Joseph
-                        Doe</li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Role: </strong></span> Pet Sitter
+                <li class="list-group-item text-muted" contenteditable="false"><h4>Profiel</h4></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Vandaag</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Echte naam</strong></span> <?php echo $gebruiker['voornaam']; ?></li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Geintresserd in: </strong></span> <?php echo $profiel['geintereseerd']; ?>
                
                       </li>
             </ul>
-           <div class="panel panel-default">
-             <div class="panel-heading">Insured / Bonded?
-
-                </div>
-                <div class="panel-body"><i style="color:green" class="fa fa-check-square"></i> Yes, I am insured and bonded.
-
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i>
-
-                </div>
-                <div class="panel-body"><a href="http://bootply.com" class="">bootply.com</a>
-
-                </div>
-            </div>
-          
+            
+                        <!--left col-->
             <ul class="list-group">
-                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i>
-
-                </li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Shares</strong></span> 125</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> 13</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 37</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Followers</strong></span> 78</li>
+                <li class="list-group-item text-muted" contenteditable="false"><h4>Uiterlijk</h></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Ethniciteit</strong></span> <?php echo $profiel['etniciteit']; ?></li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Lichaamsbouw</strong></span> <?php echo $profiel['lichaam']; ?></li>
+               
+                      </li>
             </ul>
-            <div class="panel panel-default">
-                <div class="panel-heading">Social Media</div>
-                <div class="panel-body">	<i class="fa fa-facebook fa-2x"></i>  <i class="fa fa-github fa-2x"></i> 
-                    <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i>  <i class="fa fa-google-plus fa-2x"></i>
-
-                </div>
+                        
+            <ul class="list-group">
+                <li class="list-group-item text-muted" contenteditable="false"><h4>Gewoonten</h4></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Roken</strong></span> <?php echo $profiel['roken']; ?></li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Drinken</strong></span> <?php echo $profiel['drinken']; ?></li>
+               
+                      </li>
+            </ul
+            
+                        <ul class="list-group">
+                            <li class="list-group-item text-muted" contenteditable="false"><h4>Favorieten</h4></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Film</strong></span> <?php echo $film['titel']; ?></li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Muziek</strong></span> <?php echo $muziek['titel']; ?></li>
+               
+                      </li>
+            </ul
+            
+            
+            
+                        
+            
             </div>
         </div>
         <!--/col-3-->
         <div class="col-sm-9" style="" contenteditable="false">
             <div class="panel panel-default">
-                <div class="panel-heading">Starfox221's Bio</div>
-                <div class="panel-body"> A long description about me.
+                <div class="panel-heading"><h3>Over mij</h3></div>
+                <div class="panel-body"> <?php echo $profiel['overmij']; ?>
 
                 </div>
             </div>
             <div class="panel panel-default target">
-                <div class="panel-heading" contenteditable="false">Pets I Own</div>
+                <div class="panel-heading" contenteditable="false"><h3>Evenementen</h3></div>
                 <div class="panel-body">
                   <div class="row">
 				<div class="col-md-4">
@@ -147,47 +174,13 @@
         </div>
               
     </div>
-           <div class="panel panel-default">
-                <div class="panel-heading">Starfox221's Bio</div>
-                <div class="panel-body"> A long description about me.
 
-                </div>
 </div></div>
 
 
             <div id="push"></div>
         </div>
-        <footer id="footer">
-            <div class="row-fluid">
-                <div class="span3">
-                    <p> 
-                        <a href="http://twitter.com/Bootply" rel="nofollow" title="Bootply on Twitter" target="ext">Twitter</a><br>
-                        <a href="https://plus.google.com/+Bootply" rel="publisher">Google+</a><br>
-                        <a href="http://facebook.com/Bootply" rel="nofollow" title="Bootply on Facebook" target="ext">Facebook</a><br>
-                        <a href="https://github.com/iatek/bootply" title="Bootply on GitHub" target="ext">GitHub</a><br>
-                    </p>
-                </div>
-                <div class="span3">
-                    <p> 
-                        <a data-toggle="modal" role="button" href="#contactModal">Contact Us</a><br>
-                        <a href="/tags">Tags</a><br>
-                        <a href="/bootstrap-community">Community</a><br>
-                        <a href="/upgrade">Upgrade</a><br>
-                    </p>
-                </div>
-                <div class="span3">
-                    <p> 
-                        <a href="http://www.bootbundle.com" target="ext" rel="nofollow">BootBundle</a><br>
-                        <a href="https://bootstrapbay.com/?ref=skelly" target="_ext" rel="nofollow" title="Premium Bootstrap themes">Bootstrap Themes</a><br>
-                        <a href="http://www.bootstrapzero.com" target="_ext" rel="nofollow" title="Free Bootstrap templates">BootstrapZero</a><br>
-                        <a href="http://upgrade-bootstrap.bootply.com/">2.x Upgrade Tool</a><br>
-                    </p>
-                </div>
-                <div class="span3">
-                    <span class="pull-right">©Copyright 2013-2014 <a href="/" title="The Bootstrap Playground">Bootply</a> | <a href="/about#privacy">Privacy</a></span>
-                </div>
-            </div>
-        </footer>
+
         
         <script src="/plugins/bootstrap-select.min.js"></script>
         <script src="/codemirror/jquery.codemirror.js"></script>
@@ -388,7 +381,7 @@
         <!-- End Quantcast tag -->
         <div id="completeLoginModal" class="modal hide">
             <div class="modal-header">
-                <a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="close">ï¿½</a>
                  <h3>Do you want to proceed?</h3>
             </div>
             <div class="modal-body">
@@ -405,7 +398,7 @@
         </div>
         <div id="forgotPasswordModal" class="modal hide">
             <div class="modal-header">
-                <a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="close">ï¿½</a>
                  <h3>Password Lookup</h3>
             </div>
             <div class="modal-body">
@@ -428,7 +421,7 @@
         </div>
         <div id="upgradeModal" class="modal hide">
             <div class="modal-header">
-                <a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="close">ï¿½</a>
                  <h4>Would you like to upgrade?</h4>
             </div>
             <div class="modal-body">
@@ -444,7 +437,7 @@
         </div>
         <div id="contactModal" class="modal hide">
             <div class="modal-header">
-                <a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="close">ï¿½</a>
                 <h3>Contact Us</h3>
                 <p>suggestions, questions or feedback</p>
             </div>
