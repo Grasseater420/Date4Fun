@@ -1,7 +1,7 @@
 <head>
   <?php
     include 'header.php';
-    renderHead('Date4Fun Profiel')
+    renderHead('Date4Fun Profiel');
     renderNavbar();
   ?>
 </head>
