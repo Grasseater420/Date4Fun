@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL & ~E_NOTICE);
+
 //include 'functions_gebruikersessie.php';
 
 include "header.php";
@@ -69,7 +71,17 @@ function toevoegenAanWinkelWagen($productid)
     
 if (in_array($productid, $_SESSION['winkelwagen']))
 {
-    //echo "Je hebt dit product al in de winkelwagen";
+    echo "<div class=\"container\">";
+      echo "<div class=\"row\">";
+      echo "<div class=\"alert alert-danger\"><strong>Product al aanwezig in winkelmand!</strong></div>";
+      echo "<div class=\"row\">";
+      
+      
+  
+              
+        echo "</div>";
+          echo "</div>";
+    
 }
 else {
     array_push($_SESSION[ 'winkelwagen'], $productid);
@@ -99,15 +111,16 @@ function winkelWagenOverzicht($db)
     
     
 
+
 <div class="panel-body">
 
 
 <?php
+
+
     if (count($_SESSION['winkelwagen']) >= 1)
     {
     $str =  implode(',', $_SESSION['winkelwagen']) ;
-    echo "<hr>";
-    echo $str;
     
     
     
@@ -126,7 +139,7 @@ function winkelWagenOverzicht($db)
     
      <div class="container">
 	<div class="row">
-		<div class="col-xs-8">
+		<div class="col-xs-8 col-md-offset-2">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="panel-title">
@@ -165,7 +178,7 @@ function winkelWagenOverzicht($db)
 							<div class="col-xs-4">
 							</div>
 							<div class="col-xs-2">
-                                                            <a href="./winkelwagen2.php?del=<?php echo $product['product_id']; ?>" <button type="button" class="btn btn-link btn-xs">
+                                                            <a href="./winkelwagen.php?del=<?php echo $product['product_id']; ?>" <button type="button" class="btn btn-link btn-xs">
                                                                     
                                                                     
 									<span class="glyphicon glyphicon-trash"> </span>
@@ -213,7 +226,7 @@ function winkelWagenOverzicht($db)
 
 <div class="container">
 	<div class="row">
-		<div class="col-xs-8">
+		<div class="col-xs-8 col-md-offset-2">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="panel-title">

@@ -11,7 +11,7 @@ include 'functions_gebruikersessie.php';
 if (isIngelogd())
 {
     logUitSessieGebruiker();
-    header("Location:./registratie_home.php");
+    header("Location:./index.php");
     exit();
 }
 else {
