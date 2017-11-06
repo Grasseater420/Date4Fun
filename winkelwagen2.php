@@ -9,6 +9,7 @@ include "config.php";
 if (1 ==1) // moet niet ingelogd
     
 {
+    session_start();
 
     
     if (empty($_SESSION['winkelwagen']))

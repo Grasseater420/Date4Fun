@@ -22,10 +22,13 @@
 
     if (isIngelogd() == false) {
 
-      echo "<nav class=\"navbar navbar-default\">
+        
+      echo "<nav class=\"navbar navbar-inverse\">
               <div class=\"container-fluid\">
                 <ul class=\"nav navbar-nav navbar-right\">
+                
                   <li><a data-toggle=\"modal\" href=\"#loginModal\">Login</a></li>
+                  
                 </ul>
               </div>
             </nav>";
