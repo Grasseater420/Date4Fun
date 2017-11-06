@@ -1,7 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-</head>
 <body>
   <h1>Date4Fun</h1>
   <h1>Logo</h1>
@@ -24,28 +20,41 @@
         <img src='./profielpics".$row['foto']."' height='100' width='100'>
         <h3>".$row['voornaam']."</h3>
         <p>".$row['overmij']."</p>
+		
       </div>
       ";
     }
   }
 
-  //Aantal profielen die bestaan
-  $query = "SELECT COUNT(gebruiker_id) FROM gebruikers";
+
+  //maak een array met alle gebruikers_id's
+  $query = "SELECT gebruikers_id FROM profielen";
   $result = mysqli_query($db, $query);
 
-  $row = mysqli_fetch_array($result);
+    $nummers = array();
+	
+	while ($row = mysqli_fetch_assoc ($result))
+	{
+		array_push($nummers, $row['gebruikers_id']);
 
-  $total = $row[0];
+	}
+	
 
-  //Random getal om profiel op te roepen
-  $id = RAND(1,$total);
+
+  //kiest 2 willekeurige id's uit de array en laat die zien
+  $rand_id = array_rand ($nummers, 2);
+  $id = $nummers[$rand_id[0]];
+  $id2 = $nummers[$rand_id[1]];
+
   laatProfielZien($id);
+  laatProfielZien($id2);
  ?>
 
- <form action="http://localhost/PHP1/Date4Fun%20Project%20files/matchen.php">
-     <input type="submit" value="Dislike"/>
+ <form action="http://localhost/Date4Fun/matchen.php">
+     <input type="submit" value="Nieuwe vrijgezelen bekijken"/>
  </form>
 
- <a href="profiel.php?id=<?php echo $id; ?>">Profiel bezoeken</a>
+ <a href="profiel.php?id=<?php echo $id; ?>">Profiel1 bezoeken</a>
+ <a href="profiel.php?id=<?php echo $id2; ?>">Profiel2 bezoeken</a>
 </body>
 </html>
