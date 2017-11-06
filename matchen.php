@@ -27,7 +27,7 @@
   }
 
 
-  //Aantal profielen die bestaan
+  //maak een array met alle gebruikers_id's
   $query = "SELECT gebruikers_id FROM profielen";
   $result = mysqli_query($db, $query);
 
@@ -41,7 +41,7 @@
 	
 
 
-  //Random getal om profiel op te roepen
+  //kiest 2 willekeurige id's uit de array en laat die zien
   $rand_id = array_rand ($nummers, 2);
   $id = $nummers[$rand_id[0]];
   $id2 = $nummers[$rand_id[1]];
