@@ -1,8 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Date4Fun Admin</title>
-<link rel="stylesheet" type="text/css" href="css.css">
+	<?php
+	 	include 'header.php';
+		renderHead('Date4Fun Admin');
+		renderNavbar();
+	?>
 </head>
 <body>
 	<?php include "lorem.php" ?>
