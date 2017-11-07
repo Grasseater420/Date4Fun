@@ -61,7 +61,7 @@
               <div class=\"panel-body\">
                 <img src=\"./profielpics" . $test[$rand_id[$i]]['foto'] . "\" class=\"img-responsive\">
               </div>
-              <div class=\"panel-body\">
+              <div class=\"panel-footer\">
                 <p>" . $test[$rand_id[$i]]['overmij'] . "</p>
               </div>
             </div>
@@ -82,7 +82,7 @@
 
     include "header.php";
 
-    renderHead('Date4Fun Events');
+    renderHead('Date4Fun Matchen');
     renderNavbar();
     // renderJumbotron();
 

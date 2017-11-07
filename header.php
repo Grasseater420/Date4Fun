@@ -91,6 +91,7 @@
       else {
         $aantalInWinkelwagen = 0;
       }
+    
       echo "
         <nav class=\"navbar navbar-default\">
           <div class=\"container-fluid\">
@@ -116,6 +117,13 @@
                   </button>
                 </a>
               </li>
+              <li>
+                <a href=\"./matchen.php\">
+                  <button type=\"button\" class=\"btn btn-link\">
+                    Matchen
+                  </button>
+                </a>
+              </li>
             </ul>
             <ul class=\"nav navbar-nav navbar-right\">
               <li>
@@ -138,6 +146,7 @@
         </nav>
         ";
     }
+
     ////
     // Onzin
     ////
