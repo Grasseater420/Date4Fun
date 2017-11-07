@@ -30,7 +30,7 @@
 
 <?php
 var_dump($_FILES);
-	if (!isset($_POST["registeren"])){
+	if (!isset($_POST["Submit"])){
 ?>
 
     
@@ -138,7 +138,7 @@ var_dump($_FILES);
         </div>
         <div class="form-group">
           <div class="col-xs-offset-3 col-xs-10">
-            <input type="submit" name="registreren" value="registreren" class="btn btn-primary">
+            <input name="Submit" type="submit" value="Registreren" class="btn btn-primary">
           </div>
         </div>
       </form>
@@ -154,10 +154,9 @@ var_dump($_FILES);
 
 		if (!empty($_POST["email"]) && !empty($_POST["gebruikersnaam"]) && !empty($_POST["wachtwoord"]) && !empty($_POST["bwachtwoord"]) && !empty($_POST["voornaam"]) && !empty($_POST["achternaam"]) && !empty($_POST["dd"]) && !empty($_POST["mm"]) && !empty($_POST["yy"]))
                     {
-                    var_dump($_POST);
-                    die();
 			include "config.php";
                         
+                        die("oke");
 
 			$email = $_POST["voornaam"];
 			$gebruikersnaam = $_POST["tussenvoegsel"];
