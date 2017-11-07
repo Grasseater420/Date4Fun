@@ -120,7 +120,7 @@
               <li>";
 
               $url = $_SERVER['PHP_SELF'];
-              $explode = explode(fun, $url);
+              $explode = explode('fun', $url);
               // echo $explode[1];
               if ($explode[1] == "/matchen.php") {
 
