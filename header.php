@@ -11,12 +11,15 @@
   }
 
   function renderNavbar() {
+      
+      
+      echo "<div class=\"container\">";
 
     include 'login.php';
 
     if (isset($_GET['mail'])) {
       $succes     = "Er is een mail met wachtwoord gestuurd!<br><br>
-                    <button type=\"submit\" class=\"btn btn-default\">Login</button>";
+                    <button type=\"submit\" class=\"btn btn-default btn-lg\">Login</button>";
       $script     = "<script> $(document).ready(function(){ $('#loginModal').modal('show'); }); </script>";
     }
 
@@ -92,11 +95,11 @@
                 </ul>
                 <ul class=\"nav navbar-nav navbar-right\">
                 
-                 <li><a href=\"./winkelwagen.php?overzicht\">        <button type=\"button\" class=\"btn btn-default btn-sm\">
+                 <li><a href=\"./winkelwagen.php?overzicht\">        <button type=\"button\" class=\"btn btn-default btn-lg\">
           <span class=\"glyphicon glyphicon-shopping-cart\"></span> Winkelwagen ($aantalInWinkelwagen)
         </button></a></li>
                  
-        <li> <a href=\"./logout.php\"> <button type=\"button\" class=\"btn btn-default btn-sm\">
+        <li> <a href=\"./logout.php\"> <button type=\"button\" class=\"btn btn-default btn-lg\">
           <span class=\"glyphicon glyphicon-log-out\"></span> Uitloggen
         </button></a></li>
 
@@ -141,6 +144,8 @@
 
           </div>
         </div>';
+    
+    echo "</div>";
   }
 
   function renderJumbotron() {
