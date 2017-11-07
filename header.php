@@ -91,7 +91,7 @@
       else {
         $aantalInWinkelwagen = 0;
       }
-    
+
       echo "
         <nav class=\"navbar navbar-default\">
           <div class=\"container-fluid\">
@@ -117,12 +117,29 @@
                   </button>
                 </a>
               </li>
-              <li>
+              <li>";
+
+              $url = $_SERVER['PHP_SELF'];
+              $explode = explode(fun, $url);
+              // echo $explode[1];
+              if ($explode[1] == "/matchen.php") {
+
+      echo "
+                <a href=\"./matchen.php\">
+                  <button type=\"button\" class=\"btn btn-link\">
+                    Nieuwe Match
+                  </button>
+                </a>";
+              }
+              else {
+      echo "
                 <a href=\"./matchen.php\">
                   <button type=\"button\" class=\"btn btn-link\">
                     Matchen
                   </button>
-                </a>
+                </a>";
+              }
+      echo "
               </li>
             </ul>
             <ul class=\"nav navbar-nav navbar-right\">
