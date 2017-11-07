@@ -36,6 +36,7 @@ if (1 ==1) // moet niet ingelogd
     <style>
         
         .product-name { margin-left: 20px; }
+        .panel-body { padding-top: 14px; }
 
     </style>
 
@@ -147,10 +148,10 @@ function winkelWagenOverzicht($db)
 					<div class="panel-title">
 						<div class="row">
 							<div class="col-xs-6">
-								<h4><span class="glyphicon glyphicon-shopping-cart"></span> Winkelwagen</h4>
+								<h4><span class="glyphicon glyphicon-shopping-cart"></span> Winkelwagen inhoud</h4>
 							</div>
 							<div class="col-xs-6">
-                           <a href="./events.php"><button type="button" class="btn btn-primary btn-lg btn-block">
+                           <a href="./events.php"><button type="button" class="btn btn-default btn-lg btn-block">
 									<span class="glyphicon glyphicon-share-alt"></span> Verder winkelen
 								</button><a/>
 							</div>
@@ -235,7 +236,7 @@ function winkelWagenOverzicht($db)
 					<div class="panel-title">
 						<div class="row">
 							<div class="col-xs-6">
-								<h5><span class="glyphicon glyphicon-shopping-cart"></span> Winkelwagen</h5>
+								<h4><span class="glyphicon glyphicon-shopping-cart"></span> Winkelwagen inhoud</h4>
 							</div>
 							<div class="col-xs-6">
 
@@ -251,15 +252,18 @@ function winkelWagenOverzicht($db)
 						</div>
 						
 					</div>
+                            </div>
 				<div class="panel-footer">
 					<div class="row text-center">
 						<div class="col-xs-9">
 						</div>
 						<div class="col-xs-3">
-                                                    <a href="./events.php"><button type="button" class="btn btn-primary btn-lg btn-block">
+                                                    <a href="./events.php"><button type="button" class="btn btn-default btn-lg btn-block">
 									<span class="glyphicon glyphicon-share-alt"></span> winkelen
 								</button><a/>
 						</div>
+                                        </div>
+                                </div>
 
 
 <?php

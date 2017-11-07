@@ -26,11 +26,14 @@
     if (isIngelogd() == false) {
 
         
-      echo "<nav class=\"navbar navbar-inverse\">
+      echo "<nav class=\"navbar navbar-default\">
               <div class=\"container-fluid\">
                 <ul class=\"nav navbar-nav navbar-right\">
                 
-                  <li><a data-toggle=\"modal\" href=\"#loginModal\">Login</a></li>
+                  
+        <li> <a data-toggle=\"modal\" href=\"#loginModal\" <button type=\"button\" class=\"btn btn-lnk btn-lg\">
+          <span class=\"glyphicon glyphicon-log-in\"></span> Inloggen
+        </button></a></li>
                   
                 </ul>
               </div>
@@ -95,11 +98,11 @@
                 </ul>
                 <ul class=\"nav navbar-nav navbar-right\">
                 
-                 <li><a href=\"./winkelwagen.php?overzicht\">        <button type=\"button\" class=\"btn btn-default btn-lg\">
+                 <li><a href=\"./winkelwagen.php?overzicht\">        <button type=\"button\" class=\"btn btn-link btn-lg\">
           <span class=\"glyphicon glyphicon-shopping-cart\"></span> Winkelwagen ($aantalInWinkelwagen)
         </button></a></li>
                  
-        <li> <a href=\"./logout.php\"> <button type=\"button\" class=\"btn btn-default btn-lg\">
+        <li> <a href=\"./logout.php\"> <button type=\"button\" class=\"btn btn-link btn-lg\">
           <span class=\"glyphicon glyphicon-log-out\"></span> Uitloggen
         </button></a></li>
 
