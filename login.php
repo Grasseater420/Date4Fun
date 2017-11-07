@@ -3,7 +3,7 @@
   include 'config.php';
   include 'functions_gebruikersessie.php';
 
-  if (!empty($_POST['submit'])) {
+  if (!empty($_POST['login'])) {
     $gebruiker  = mysqli_real_escape_string($db, $_POST['gebruikersnaam']);
     $wachtwoord = mysqli_real_escape_string($db, $_POST['wachtwoord']);
     $query      = "SELECT * FROM gebruikers WHERE gebruikersnaam ='" . $_POST["gebruikersnaam"] ."'AND wachtwoord='" . $_POST["wachtwoord"] ."'";
