@@ -12,9 +12,9 @@
       include "config.php";
 
       renderNavbar();
-      
-      
-      
+
+
+
 
 
 if (isset($_GET['id']) && !is_null($_GET['id']) && is_numeric($_GET['id']))
@@ -49,8 +49,8 @@ $film = mysqli_fetch_assoc($result);
           else {
               $eigenprofiel = false;
           }
-          
-         
+
+
 
 
     ?>
@@ -60,17 +60,16 @@ $film = mysqli_fetch_assoc($result);
 
 
 
-<hr class="">
 <div class="container target">
     <div class="row">
         <div class="col-sm-10">
              <h1 class="">Profiel van <?php echo $gebruiker['gebruikersnaam']; ?></h1>
-         
-             
-          
+
+
+
           <?php
-          
-          
+
+
           if ($eigenprofiel)
           {
               echo "<h2><span class=\"label label-info\">U heeft een goldmembership deze verloopt op 20-11-2017</span></h2> ";
@@ -94,39 +93,39 @@ $film = mysqli_fetch_assoc($result);
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Vandaag</li>
                     <li class="list-group-item text-right"><span class="pull-left"><strong class="">Echte naam</strong></span> <?php echo $gebruiker['voornaam']; ?></li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Geïnteresseerd in: </strong></span> <?php echo $profiel['geintereseerd']; ?>
-               
+
                       </li>
             </ul>
-            
+
                         <!--left col-->
             <ul class="list-group">
                 <li class="list-group-item text-muted" contenteditable="false"><h4>Uiterlijk</h></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Ethniciteit</strong></span> <?php echo $profiel['etniciteit']; ?></li>
                     <li class="list-group-item text-right"><span class="pull-left"><strong class="">Lichaamsbouw</strong></span> <?php echo $profiel['lichaam']; ?></li>
-               
+
                       </li>
             </ul>
-                        
+
             <ul class="list-group">
                 <li class="list-group-item text-muted" contenteditable="false"><h4>Gewoonten</h4></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Roken</strong></span> <?php echo $profiel['roken']; ?></li>
                     <li class="list-group-item text-right"><span class="pull-left"><strong class="">Drinken</strong></span> <?php echo $profiel['drinken']; ?></li>
-               
+
                       </li>
             </ul
-            
+
                         <ul class="list-group">
                             <li class="list-group-item text-muted" contenteditable="false"><h4>Favorieten</h4></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Film</strong></span> <?php echo $film['titel']; ?></li>
                     <li class="list-group-item text-right"><span class="pull-left"><strong class="">Muziek</strong></span> <?php echo $muziek['titel']; ?></li>
-               
+
                       </li>
             </ul
-            
-            
-            
-                        
-            
+
+
+
+
+
             </div>
         </div>
         <!--/col-3-->
@@ -152,7 +151,7 @@ $film = mysqli_fetch_assoc($result);
 								Cocker Spaniel who loves treats.
 							</p>
 							<p>
-							
+
 							</p>
 						</div>
 					</div>
@@ -168,7 +167,7 @@ $film = mysqli_fetch_assoc($result);
 								Is just another friendly dog.
 							</p>
 							<p>
-							
+
 							</p>
 						</div>
 					</div>
@@ -184,17 +183,17 @@ $film = mysqli_fetch_assoc($result);
 								Loves catnip and naps. Not fond of children.
 							</p>
 							<p>
-							
+
 							</p>
 						</div>
                 </div>
-                 
+
             </div>
-                     
+
             </div>
-                 
+
         </div>
-              
+
     </div>
 
 </div></div>
@@ -203,7 +202,7 @@ $film = mysqli_fetch_assoc($result);
             <div id="push"></div>
         </div>
 
-        
+
         <script src="/plugins/bootstrap-select.min.js"></script>
         <script src="/codemirror/jquery.codemirror.js"></script>
         <script src="/beautifier.js"></script>
@@ -219,14 +218,14 @@ $film = mysqli_fetch_assoc($result);
         jQuery.fn.shake = function(intShakes, intDistance, intDuration, foreColor) {
             this.each(function() {
                 if (foreColor && foreColor!="null") {
-                    $(this).css("color",foreColor); 
+                    $(this).css("color",foreColor);
                 }
-                $(this).css("position","relative"); 
+                $(this).css("position","relative");
                 for (var x=1; x<=intShakes; x++) {
                 $(this).animate({left:(intDistance*-1)}, (((intDuration/intShakes)/4)))
                 .animate({left:intDistance}, ((intDuration/intShakes)/2))
                 .animate({left:0}, (((intDuration/intShakes)/4)));
-                $(this).css("color",""); 
+                $(this).css("color","");
             }
           });
         return this;
@@ -234,10 +233,10 @@ $film = mysqli_fetch_assoc($result);
         </script>
         <script>
         $(document).ready(function() {
-        
+
             $('.tw-btn').fadeIn(3000);
             $('.alert').delay(5000).fadeOut(1500);
-            
+
             $('#btnLogin').click(function(){
                 $(this).text("...");
                 $.ajax({
@@ -295,12 +294,12 @@ $film = mysqli_fetch_assoc($result);
                     }
                 });
             });
-            
+
             $('.loginFirst').click(function(){
                 $('#navLogin').trigger('click');
                 return false;
             });
-            
+
             $('#btnForgotPassword').on('click',function(){
                 $.ajax({
                     url: "/resetPassword",
@@ -321,9 +320,9 @@ $film = mysqli_fetch_assoc($result);
                     }
                 });
             });
-            
+
             $('#btnContact').click(function(){
-                
+
                 $.ajax({
                     url: "/contact",
                     type: "post",
@@ -345,17 +344,17 @@ $film = mysqli_fetch_assoc($result);
                 });
                 return false;
             });
-            
+
             /*
             $('.nav .dropdown-menu input').on('click touchstart',function(e) {
                 e.stopPropagation();
             });
             */
-            
-            
-            
-            
-            
+
+
+
+
+
         });
         $.fn.serializeObject = function()
         {
@@ -381,7 +380,7 @@ $film = mysqli_fetch_assoc($result);
         <!-- Quantcast Tag -->
         <script type="text/javascript">
         var _qevents = _qevents || [];
-        
+
         (function() {
         var elem = document.createElement('script');
         elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
@@ -390,7 +389,7 @@ $film = mysqli_fetch_assoc($result);
         var scpt = document.getElementsByTagName('script')[0];
         scpt.parentNode.insertBefore(elem, scpt);
         })();
-        
+
         _qevents.push({
         qacct:"p-0cXb7ATGU9nz5"
         });
@@ -424,7 +423,7 @@ $film = mysqli_fetch_assoc($result);
                  <h3>Password Lookup</h3>
             </div>
             <div class="modal-body">
-                  <form class="form form-horizontal" id="formForgotPassword">    
+                  <form class="form form-horizontal" id="formForgotPassword">
                   <div class="control-group">
                       <label class="control-label" for="inputEmail">Email</label>
                       <div class="controls">
@@ -436,10 +435,10 @@ $film = mysqli_fetch_assoc($result);
                   </form>
             </div>
             <div class="modal-footer pull-center">
-                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn">Cancel</a> 	
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn">Cancel</a>
             	<a href="#" data-dismiss="modal" id="btnForgotPassword" class="btn btn-success">Reset Password</a>
             </div>
-            
+
         </div>
         <div id="upgradeModal" class="modal hide">
             <div class="modal-header">
@@ -487,14 +486,14 @@ $film = mysqli_fetch_assoc($result);
                   </form>
             </div>
             <div class="modal-footer pull-center">
-                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn">Cancel</a>     
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn">Cancel</a>
                 <a href="#" data-dismiss="modal" aria-hidden="true" id="btnContact" role="button" class="btn btn-success">Send</a>
             </div>
         </div>
-        
-        
-        
-	
+
+
+
+
 	<script src="/plugins/bootstrap-pager.js"></script>
 </div>
 

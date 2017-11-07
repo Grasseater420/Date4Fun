@@ -70,9 +70,9 @@
                     echo $succes;
                   }
                   else {
-                    echo "<button type=\"submit\" name=\"submit\" class=\"btn btn-default\">Login</button>";
+                    echo "<button type=\"submit\" name=\"login\" value=\"login\" class=\"btn btn-default\">Login</button>";
                   }
-    echo "
+      echo "
                 </form>
               </div>
             </div>
@@ -96,25 +96,38 @@
           <div class=\"container-fluid\">
             <ul class=\"nav navbar-nav\">
               <li>
-                <a href=\"./profiel.php?id=" . $_SESSION['gebruikers_id'] . "\"><span class=\"glyphicon glyphicon-user\"></span> Mijn profiel</p></a>
+                <a href=\"./profiel.php?id=" . $_SESSION['gebruikers_id'] . "\">
+                  <button type=\"button\" class=\"btn btn-link\">
+                    <span class=\"glyphicon glyphicon-user\"></span> Mijn profiel
+                  </button>
+                </a>
               </li>
               <li>
-                <a href=\"./memberships.php\">Memberships</a>
+                <a href=\"./memberships.php\">
+                  <button type=\"button\" class=\"btn btn-link\">
+                    Memberships
+                  </button>
+                </a>
               </li>
               <li>
-                <a href=\"./events.php\">Events</a>
+                <a href=\"./events.php\">
+                  <button type=\"button\" class=\"btn btn-link\">
+                    Events
+                  </button>
+                </a>
               </li>
             </ul>
             <ul class=\"nav navbar-nav navbar-right\">
               <li>
                 <a href=\"./winkelwagen.php?overzicht\">
-                  <button type=\"button\" class=\"btn btn-link btn-lg\">
-                  <span class=\"glyphicon glyphicon-shopping-cart\"></span> Winkelwagen ($aantalInWinkelwagen)</button>
+                  <button type=\"button\" class=\"btn btn-link\">
+                    <span class=\"glyphicon glyphicon-shopping-cart\"></span> Winkelwagen ($aantalInWinkelwagen)
+                  </button>
                 </a>
               </li>
               <li>
                 <a href=\"./logout.php\">
-                  <button type=\"button\" class=\"btn btn-link btn-lg\">
+                  <button type=\"button\" class=\"btn btn-link\">
                     <span class=\"glyphicon glyphicon-log-out\"></span>
                     Uitloggen
                   </button>
