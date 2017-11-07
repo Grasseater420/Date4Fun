@@ -34,6 +34,8 @@ if (1 ==1) // moet niet ingelogd
     <title>Date4Fun Events</title>
     
     <style>
+        
+        .product-name { margin-left: 20px; }
 
     </style>
 
@@ -145,10 +147,10 @@ function winkelWagenOverzicht($db)
 					<div class="panel-title">
 						<div class="row">
 							<div class="col-xs-6">
-								<h5><span class="glyphicon glyphicon-shopping-cart"></span> Winkelwagen</h5>
+								<h4><span class="glyphicon glyphicon-shopping-cart"></span> Winkelwagen</h4>
 							</div>
 							<div class="col-xs-6">
-                           <a href="./events.php"><button type="button" class="btn btn-primary btn-sm btn-block">
+                           <a href="./events.php"><button type="button" class="btn btn-primary btn-lg btn-block">
 									<span class="glyphicon glyphicon-share-alt"></span> Verder winkelen
 								</button><a/>
 							</div>
@@ -166,10 +168,11 @@ function winkelWagenOverzicht($db)
 
 
 					<div class="row">
-						<div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
-						</div>
-						<div class="col-xs-4">
+		
+						<div class="col-xs-6">
+
 							<h4 class="product-name"><strong><?php echo $product['titel']; ?> </strong></h4><h4><small></small></h4>
+
 						</div>
 						<div class="col-xs-6">
 							<div class="col-xs-6 text-right">
@@ -178,7 +181,7 @@ function winkelWagenOverzicht($db)
 							<div class="col-xs-4">
 							</div>
 							<div class="col-xs-2">
-                                                            <a href="./winkelwagen.php?del=<?php echo $product['product_id']; ?>" <button type="button" class="btn btn-link btn-xs">
+                                                            <a href="./winkelwagen.php?del=<?php echo $product['product_id']; ?>" <button type="button" class="btn btn-link btn-md">
                                                                     
                                                                     
 									<span class="glyphicon glyphicon-trash"> </span>
@@ -244,7 +247,7 @@ function winkelWagenOverzicht($db)
 					<div class="row">
 						
 						<div class="text-center">
-						<h4>U heeft geen producten in de winkelwagen</h4>
+						<h4>U heeft momenteen geen producten in uw winkelwagen</h4>
 						</div>
 						
 					</div>
@@ -253,8 +256,8 @@ function winkelWagenOverzicht($db)
 						<div class="col-xs-9">
 						</div>
 						<div class="col-xs-3">
-                                                    <a href="./events.php"><button type="button" class="btn btn-primary btn-sm btn-block">
-									<span class="glyphicon glyphicon-share-alt"></span> Verder winkelen
+                                                    <a href="./events.php"><button type="button" class="btn btn-primary btn-lg btn-block">
+									<span class="glyphicon glyphicon-share-alt"></span> winkelen
 								</button><a/>
 						</div>
 
