@@ -1,77 +1,99 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-
 <?php
-  include "header.php";
-  renderNavbar();?>
-  <?php
+
+  session_start();
+  error_reporting(0);
+
   include "config.php";
-  
-  function laatProfielZien($id){
-    //Connectie met Database
-    include "config.php";
 
-    //De query om profielen te verkrijgen
-    $query = "SELECT gebruikers.voornaam, profielen.foto, profielen.overmij FROM `gebruikers` INNER JOIN profielen ON gebruikers.gebruiker_id=profielen.gebruikers_id WHERE gebruikers.gebruiker_id = '".$id."'";
-    $result = mysqli_query($db, $query);
+  function renderMatch() {
 
-    //Resulaten naar het scherm
-    while($row = mysqli_fetch_assoc($result)){
-      echo "
-      <div class='profiel'>
-        <img src='./profielpics".$row['foto']."' height='200' width='200'>
-        <h3>".$row['voornaam']."</h3>
-        <p>".$row['overmij']."</p>
-		
-      </div>
+    include 'config.php';
+
+    // Eerst moeten we onze eigen interesse weten.
+    $query  = "
+      SELECT profielen.geintereseerd, gebruikers.geslacht
+      FROM gebruikers
+      INNER JOIN profielen
+      ON gebruikers.gebruiker_id=profielen.gebruikers_id
+      WHERE gebruikers.gebruiker_id = '" . $_SESSION['gebruikers_id'] . "'
       ";
+    $result = mysqli_query($db, $query) or die("FOUT: " . mysqli_error());
+
+    while ($row = mysqli_fetch_assoc($result)) {
+      $geintereseerd  = $row['geintereseerd'];
+      $geslacht       = $row['geslacht'];
     }
+
+    // Nu hebben we kandidaten nodig.
+    $query2  = "
+      SELECT profielen.gebruikers_id, gebruikers.voornaam, profielen.foto, profielen.overmij
+      FROM `gebruikers`
+      INNER JOIN profielen
+      ON gebruikers.gebruiker_id=profielen.gebruikers_id
+      WHERE gebruikers.geslacht='" . $geintereseerd . "'
+      AND profielen.geintereseerd='" . $geslacht . "'
+      ";
+    $result2 = mysqli_query($db, $query2) or die("FOUT: " . mysqli_error());
+
+    while ($row = mysqli_fetch_assoc($result2)) {
+      $test[] = array(
+          'id'            => $row['gebruikers_id'],
+          'voornaam'      => $row['voornaam'],
+          'foto'          => $row['foto'],
+          'overmij'       => $row['overmij']
+      );
+    }
+
+    // Genereer random shit.
+    $rand_id = array_rand ($test, 2);
+    // echo $test[$rand_id[0]]['id'] . "<br>";
+    // echo $test[$rand_id[1]]['id'];
+    $i = 0;
+    echo "<div class=\"container\"><div class='row'>";
+    while ($i < 2) {
+      echo "
+        <div class='col-sm-6'>
+          <div class=\"container-fluid\">
+            <div class=\"panel panel-default\">
+              <div class=\"panel-heading\">
+                <h3>" . $test[$rand_id[$i]]['voornaam'] . "<a class=\"btn btn-default pull-right\" href=\"./profiel.php?id=" . $test[$rand_id[$i]]['id'] . "\">Profiel</a></h3>
+              </div>
+              <div class=\"panel-body\">
+                <img src=\"./profielpics" . $test[$rand_id[$i]]['foto'] . "\" class=\"img-responsive\">
+              </div>
+              <div class=\"panel-body\">
+                <p>" . $test[$rand_id[$i]]['overmij'] . "</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        ";
+      $i++;
+    }
+    echo "</div></div>";
   }
 
-
-  //Aantal profielen die bestaan
-  $query = "SELECT gebruikers_id FROM profielen";
-  $result = mysqli_query($db, $query);
-
-    $nummers = array();
-	
-	while ($row = mysqli_fetch_assoc ($result))
-	{
-		array_push($nummers, $row['gebruikers_id']);
-
-	}
-	
+?>
 
 
-  //Random getal om profiel op te roepen
-  $rand_id = array_rand ($nummers, 2);
-  $id = $nummers[$rand_id[0]];
-  $id2 = $nummers[$rand_id[1]];
+<html>
+<head>
+  <?php
 
-  laatProfielZien($id);
- 
- ?>
-<a href="profiel.php?id=<?php echo $id; ?>">Profiel bezoeken</a>
+    include "header.php";
 
-<?php 
-	laatProfielZien($id2);
- ?>
+    renderHead('Date4Fun Events');
+    renderNavbar();
+    // renderJumbotron();
 
- <a href="profiel.php?id=<?php echo $id2; ?>">Profiel bekijken</a>
- 
- <form action="http://localhost/Date4Fun/matchen.php">
-     <input type="submit" value="Nieuwe vrijgezelen bekijken"/>
- </form>
+  ?>
+</head>
+<body>
+  <?php
 
+    renderMatch();
+
+  ?>
+  </form>
 </body>
 </html>

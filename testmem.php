@@ -25,11 +25,11 @@
 <body>
   <?php
   include "header.php";
-  include "connection.php";
+  include "config.php";
   function laatMemZien(){
     //Connectie met de database
     //Functie om membership_prijs te verkrijgen MOET NOG KOMEN
-    include "connection.php";
+    include "config.php";
 
     //De Query om titel en omschrijving te verkijgen
     $query = "SELECT membership.membership_id, membership.titel, membership.omschrijving, membership.korting, producten.prijs FROM membership INNER JOIN producten ON producten.membership_id=membership.membership_id";
@@ -75,7 +75,7 @@
   function laatEventZien(){
     //Connectie met de database
     //Functie om membership_prijs te verkrijgen MOET NOG KOMEN
-    include "connection.php";
+    include "config.php";
 
     //De Query om titel en omschrijving te verkijgen
     $query = "SELECT * FROM events INNER JOIN producten ON producten.event_id=events.event_id";

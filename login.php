@@ -3,11 +3,11 @@
   include 'config.php';
   include 'functions_gebruikersessie.php';
 
-  if (!empty($_POST)) {
+  if (!empty($_POST['submit'])) {
     $gebruiker  = mysqli_real_escape_string($db, $_POST['gebruikersnaam']);
     $wachtwoord = mysqli_real_escape_string($db, $_POST['wachtwoord']);
     $query      = "SELECT * FROM gebruikers WHERE gebruikersnaam ='" . $_POST["gebruikersnaam"] ."'AND wachtwoord='" . $_POST["wachtwoord"] ."'";
-    $result     = mysqli_query($db, $query) or die("FOUT : " . mysqli_error());
+    $result     = mysqli_query($db, $query) or die("FOUT: " . mysqli_error());
 
     if (mysqli_num_rows($result) > 0) {
 			$_SESSION["gebruiker"] = $gebruiker;
@@ -17,7 +17,7 @@
       }
 
       if ($isAdmin == true) {
-        header("Location:admin.php");
+        header("Location:testmem.php");
         exit();
       }
       else {
