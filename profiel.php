@@ -9,6 +9,7 @@
     <?php
 
       include "header.php";
+      include "getImage.php";
       include "config.php";
 
       renderNavbar();
@@ -81,7 +82,7 @@ $film = mysqli_fetch_assoc($result);
           ?>
 <br>
         </div>
-      <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profiel foto" class="img-circle img-responsive" src="./profielpics<?php echo $profiel['foto']; ?>"></a>
+      <div class="col-sm-2"><a href="#" class="pull-right"><?php showProfielFoto($gebruiker_id); ?></a>
 
         </div>
     </div>

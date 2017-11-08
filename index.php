@@ -29,7 +29,6 @@
 
 
 <?php
-var_dump($_FILES);
 	if (!isset($_POST["registeren"])){
 ?>
 
@@ -55,7 +54,7 @@ var_dump($_FILES);
           <div class="col-md-8 col-sm-9">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input type="password" class="form-control" name="gebruikersnaam" id="gebruikersnaam" placeholder="Gebruikersnaam" value="">
+              <input type="text" class="form-control" name="gebruikersnaam" id="gebruikersnaam" placeholder="Gebruikersnaam" value="">
            </div>   
           </div>
         </div>
@@ -138,7 +137,7 @@ var_dump($_FILES);
         </div>
         <div class="form-group">
           <div class="col-xs-offset-3 col-xs-10">
-            <input type="submit" name="registreren" value="registreren" class="btn btn-primary">
+            <input type="submit" name="registeren" value="registreren" class="btn btn-primary">
           </div>
         </div>
       </form>
@@ -152,22 +151,33 @@ var_dump($_FILES);
 
 	else{
 
-		if (!empty($_POST["email"]) && !empty($_POST["gebruikersnaam"]) && !empty($_POST["wachtwoord"]) && !empty($_POST["bwachtwoord"]) && !empty($_POST["voornaam"]) && !empty($_POST["achternaam"]) && !empty($_POST["dd"]) && !empty($_POST["mm"]) && !empty($_POST["yy"]))
+		if (!empty($_POST["email"]) && !empty($_POST["gebruikersnaam"]) && !empty($_POST["wachtwoord"]) && !empty($_POST["bwachtwoord"]) && !empty($_POST["voornaam"])  
+                   && !empty($_POST["achternaam"]) && !empty($_POST["dd"]) && !empty($_POST["mm"]) && !empty($_POST["yyyy"]))
                     {
-                    var_dump($_POST);
-                    die();
+
 			include "config.php";
                         
-
-			$email = $_POST["voornaam"];
-			$gebruikersnaam = $_POST["tussenvoegsel"];
-			$wachtwoord = $_POST["achternaam"];
-			$voornaam = $_POST["gebruikersnaam"];
-			$achternaam = $_POST["wachtwoord"];
-			$email = $_POST["email"];
-			$dd = $_POST["geboortedag"];
-                        $mm = $_POST["geboortemaand"];
-                        $yy = $_POST["geboortejaar"];
+                        $email = $_POST["email"];
+			$gebruikersnaam = $_POST["gebruikersnaam"];
+			$wachtwoord = $_POST["wachtwoord"];
+                        $wachtwoord_hashed = password_hash($wachtwoord, PASSWORD_DEFAULT);
+			$voornaam = $_POST["voornaam"];
+			$achternaam = $_POST["achternaam"];
+			
+                        $geslacht = $_POST["geslacht"];
+			$Dag = $_POST["dd"];
+                        $Maand = $_POST["mm"];
+                        $Jaar = $_POST["yyyy"];
+                        
+                        $geboortedatum_tmp = "$Jaar-$Maand-$Dag";
+    
+                        $geboortedatum = date('Y-m-d', strtotime($geboortedatum_tmp));
+   
+              
+            
+                        $foto = addslashes (file_get_contents($_FILES['profielfoto']['tmp_name']));
+                        
+      
 
 			$query = "SELECT * FROM gebruikers WHERE gebruikersnaam = '".$gebruikersnaam."'";
 			$result = mysqli_query($db, $query);
@@ -177,13 +187,14 @@ var_dump($_FILES);
 
 			else {
 
-			$query = "INSERT INTO `gebruikers` (`gebruiker_id`, `admin`, `voornaam`, `tussenv`, `achternaam`, `gebruikersnaam`, `wachtwoord`, `email`, `geboortedatum`)
-						VALUES (NULL, '0', '$voornaam', '$tussenvoegsel', '$achternaam', '$gebruikersnaam', '$wachtwoord', '$email', '$geboortedatum')";
+			$query = "INSERT INTO `gebruikers` (`gebruiker_id`, `admin`, `voornaam`,  `tussenv`, `achternaam`, `gebruikersnaam`, `wachtwoord`, `email`, `geboortedatum`, `geslacht`)
+						VALUES (NULL, '0', '$voornaam', NULL, '$achternaam', '$gebruikersnaam', '$wachtwoord_hashed', '$email', '$geboortedatum', '$geslacht')";
 
-			$result = mysqli_query($db, $query);
+                        $result = mysqli_query($db, $query);
+                   
 
 			echo "<h3>De volgende gegevens zijn ingevuld:</h3>";
-			echo "Naam: <b>$voornaam $tussenvoegsel $achternaam</b><br>";
+			echo "Naam: <b>$voornaam $achternaam</b><br>";
 			echo "Gebruikersnaam: <b>$gebruikersnaam</b><br>";
 			echo "Wachtwoord: <b>$wachtwoord</b><br>";
 			echo "E-mailadres: <b>$email</b><br>";
@@ -199,7 +210,10 @@ var_dump($_FILES);
 		  $total = $row[0];
 
 			//Aanmaken profiel met query
-			$query = "INSERT INTO `profielen` (`gebruikers_id`) VALUES ('$total');";
+			$query = "INSERT INTO `profielen` (`gebruikers_id`, `foto`) VALUES ('".$total."', '".$foto."')";
+                        
+                        
+
 			$result = mysqli_query($db, $query);
 
 			//Welkom bericht, doorsturen naar Login pagina
@@ -261,7 +275,7 @@ var_dump($_FILES);
 			echo "Geboortemaand is niet ingevuld.<br /.";
 		}
                 
-                if (empty($_POST["yy"])){
+                if (empty($_POST["yyyy"])){
                     
 		echo "Geboortejaar is niet ingevuld.<br /";
 		}
