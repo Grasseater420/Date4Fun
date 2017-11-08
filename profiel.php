@@ -1,21 +1,13 @@
 <html>
 <head>
 
-      
-      
 
 
   <?php
   error_reporting(0);
 
 
-<<<<<<< HEAD
   session_start();
-=======
-        session_start();
-        
-        
->>>>>>> e7a94f1fed5fc683222eb964823c828857024d03
 
 
   if ($_SESSION['gebruikers_id'] == NULL)
