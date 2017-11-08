@@ -15,27 +15,63 @@ select titel from favorietefilm
 where muziek_id = (select favorietemuziek FROM profielen 
                 where gebruiker_id = 2)
 
-gegevens profiel aanpassen
 
-update profielen set geintereseerd = 'invullen aub',
-etniciteit = 'invullen aub', 
-roken = 'invullen aub', 
-drinken = 'invullen aub', 
-lichaam = 'invullen aub',  
-where gebruikers_id = 3
+PROFIEL UPDATEN
 
-update profielen set overmij = 'invullen aub'
-where gebruikers_id = 3
+update profielen set overmij = '  '
+where gebruikers_id =  ;
 
 muziek updaten
-update profielen set favorietemuziek = 1
-where gebruikers_id = 3
+update profielen set favorietemuziek = 
+where gebruikers_id =  ;
 
-update profielen set favorietefilm = 1 
-where gebruikers_id = 3
+update profielen set favorietefilm = 
+where gebruikers_id =  ;
+
+UPDATE profielen SET geintereseerd = 'man'
+where gebruikers_id = ;
+
+UPDATE profielen SET etniciteit = '  '
+where gebruikers_id =  ;
+
+UPDATE profielen SET roken  = '  '
+where gebruikers_id =  ;
+
+
+UPDATE profielen SET drinken  = '  '
+where gebruikers_id =  ;
+
+
+UPDATE profielen SET lichaam = '  '
+where gebruikers_id =  ;
+
+UPDATE gebruikers SET voornaam = '  '
+WHERE gebruiker_id =   ;
+
+
+UPDATE gebruikers SET achternaam = '  '
+WHERE gebruiker_id =   ;
+
+
+UPDATE gebruikers SET email = '  '
+WHERE gebruiker_id =   ;
+
+UPDATE gebruikers SET gebruikersnaam = '  '
+WHERE gebruiker_id =   ;
+
+
+UPDATE gebruikers SET wachtwoord = '  '
+WHERE gebruiker_id =   ;
+
+UPDATE `gebruikers` SET `geboortedatum` = '1987-06-16' 
+WHERE `gebruikers`.`gebruiker_id` = 66;
 
 nieuwe film
 insert into favorietefilm (titel) values ('ironman')
 nieuwe muziek
 insert into favorietemuziek (titel) values ('ironman')
+
+
+
+
 
