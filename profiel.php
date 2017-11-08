@@ -15,14 +15,7 @@
             
              header("Location:index.php");
         }
-        
-        if ($_SESSION['membership'] == "Gratis")
-{
-    header("Location: memberships.php");
-}
-        
-        ?>
-      
+?>
     <?php
 
       include "header.php";

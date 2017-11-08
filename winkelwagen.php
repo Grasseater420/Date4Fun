@@ -12,12 +12,20 @@ if (1 ==1) // moet niet ingelogd
     
 {
     session_start();
+    
+    
+              if ($_SESSION['gebruikers_id'] == NULL)
+        {
+            
+             header("Location:index.php");
+        }
 
     
     if (empty($_SESSION['winkelwagen']))
     {
         $_SESSION['winkelwagen'] = array();
     }
+    
     
     
     
@@ -137,6 +145,15 @@ function winkelWagenOverzicht($db)
     $result = mysqli_query($db, $sql);
     
     
+    $sql = "SELECT membership.korting as waarde FROM membership INNER JOIN members ON members.membership_id=membership.membership_id WHERE members.gebruiker_id = '".$_SESSION['gebruikers_id']."'";
+   
+    $results = mysqli_query($db, $sql);
+    
+  
+    $korting = mysqli_fetch_assoc($results);
+    
+    
+    
     
     ?>
     
@@ -207,6 +224,16 @@ function winkelWagenOverzicht($db)
 					<div class="row text-center">
 						<div class="col-xs-9">
 							<h4 class="text-right">Totaal <strong>50.00</strong></h4>
+                                                        
+                                                                                       <?php
+                                                        if (!empty($korting['waarde'])){
+                                                            echo "uw korting: ".$korting['waarde'];
+                           
+                                                        }
+                                                        
+                                                        ?>
+                                                        
+                         
 						</div>
 						<div class="col-xs-3">
 							<button type="button" class="btn btn-success btn-block">
