@@ -57,11 +57,11 @@
   // ░░░░░▀▄░▄▀█░░░░░█░░▌░░░░▀▄░░░░░█
   ////
   error_reporting(0);
-  
+
   session_start();
           if ($_SESSION['gebruikers_id'] == NULL)
         {
-            
+
              header("Location:index.php");
         }
                if ($_SESSION['membership'] == "Gratis")
@@ -77,19 +77,17 @@
     include "getImage.php";
 
     $query  = "
-      SELECT events.event_id, events.titel, events.omschrijving, events.locatie, events.foto, producten.prijs, producten.product_id
+      SELECT *
       FROM events
-      INNER JOIN producten ON events.event_id=producten.event_id
-      WHERE NOT events.event_id IN
-        (SELECT events.event_id
-        FROM events
-        LEFT JOIN producten
-          ON events.event_id=producten.event_id
-        LEFT JOIN bestellingen
-          ON events.event_id=bestellingen.product_id
-        LEFT JOIN gebruikers
-          ON bestellingen.gebruiker_id=gebruikers.gebruiker_id
-        WHERE gebruikers.gebruiker_id='" . $_SESSION['gebruikers_id'] . "')
+      INNER JOIN producten
+	      ON events.event_id=producten.event_id
+        WHERE NOT events.event_id IN
+          (SELECT event_id
+          FROM producten
+          INNER JOIN bestellingen
+            ON bestellingen.product_id=producten.product_id
+          WHERE bestellingen.gebruiker_id='". $_SESSION['gebruikers_id'] . "'
+          AND producten.event_id IS NOT NULL)
         ";
 
     $result = mysqli_query($db, $query);

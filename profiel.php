@@ -54,20 +54,6 @@ $query = "SELECT favorietefilm.titel FROM favorietefilm INNER JOIN profielen ON 
 $result = mysqli_query($db, $query);
 $film = mysqli_fetch_assoc($result);
 
-$query = "
-  SELECT *
-  FROM events
-  LEFT JOIN producten
-  	ON events.event_id=producten.event_id
-  LEFT JOIN bestellingen
-  	ON events.event_id=bestellingen.product_id
-  LEFT JOIN gebruikers
-  	ON bestellingen.gebruiker_id=gebruikers.gebruiker_id
-  WHERE gebruikers.gebruiker_id=$gebruiker_id
-  ";
-$result = mysqli_query($db, $query);
-$evenement = mysqli_fetch_assoc($result);
-
           if ($_SESSION['gebruikers_id'] == $gebruiker_id)
           {
               $eigenprofiel= true;
@@ -181,15 +167,14 @@ $evenement = mysqli_fetch_assoc($result);
                         // include "getImage.php";
 
                         $query = "
-                          SELECT *
-                          FROM events
-                          LEFT JOIN producten
-                          	ON events.event_id=producten.event_id
-                          LEFT JOIN bestellingen
-                          	ON events.event_id=bestellingen.product_id
-                          LEFT JOIN gebruikers
-                          	ON bestellingen.gebruiker_id=gebruikers.gebruiker_id
-                          WHERE gebruikers.gebruiker_id='" . $_SESSION['gebruikers_id'] . "'
+                        SELECT events.titel, events.omschrijving, events.locatie, events.datum, events.foto
+FROM producten
+LEFT JOIN events
+ON events.event_id=producten.event_id
+INNER JOIN bestellingen
+ON bestellingen.product_id=producten.product_id
+WHERE bestellingen.gebruiker_id='" . $_SESSION['gebruikers_id'] . "'
+AND producten.event_id IS NOT NULL
                           ";
                         $result = mysqli_query($db, $query);
 
