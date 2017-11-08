@@ -96,11 +96,21 @@
         <nav class=\"navbar navbar-default\">
           <div class=\"container-fluid\">
             <ul class=\"nav navbar-nav\">
-              <li>
-                <a href=\"./profiel.php?id=" . $_SESSION['gebruikers_id'] . "\">
-                  <button type=\"button\" class=\"btn btn-link\">
-                    <span class=\"glyphicon glyphicon-user\"></span> Mijn profiel
-                  </button>
+              <li>";
+              if ($_SESSION['isAdmin'] == true) {
+                echo "<a href=\"./admin_page.php\">
+                        <button type=\"button\" class=\"btn btn-link\">
+                          <span class=\"glyphicon glyphicon-user\"></span> Admin
+                        </button>";
+              }
+              else {
+                echo "<a href=\"./profiel.php?id=" . $_SESSION['gebruikers_id'] . "\">
+                        <button type=\"button\" class=\"btn btn-link\">
+                          <span class=\"glyphicon glyphicon-user\"></span> Mijn profiel
+                        </button>";
+              }
+
+      echo "
                 </a>
               </li>
               <li>
