@@ -60,6 +60,7 @@
                 <h3>" . $test[$rand_id[$i]]['voornaam'] . "<a class=\"btn btn-default pull-right\" href=\"./profiel.php?id=" . $test[$rand_id[$i]]['id'] . "\">Profiel</a></h3>
               </div>
               <div class=\"panel-body\">
+              test
                 " . showProfielFoto($test[$rand_id[$i]]['id'], 'matchen') . "
               </div>
               <div class=\"panel-footer\">

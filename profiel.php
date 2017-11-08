@@ -76,7 +76,7 @@ $film = mysqli_fetch_assoc($result);
           ?>
 <br>
         </div>
-      <div class="col-sm-2"><a href="#" class="pull-right"><?php showProfielFoto($gebruiker_id); ?></a>
+      <div class="col-sm-2"><a href="#" class="pull-right"><?php showProfielFoto($gebruiker_id, 'profielpagina'); ?></a>
 
         </div>
     </div>

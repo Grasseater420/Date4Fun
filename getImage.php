@@ -23,7 +23,7 @@ if ($row["foto"])
 {
     if($type == "matchen")
     {
-     echo '<img title="profiel foto" class="img-responsive" style="height:100px" src="data:image/jpeg;base64,'.base64_encode( $row['foto'] ).'"/>';
+     return'<img title="profiel foto" class="img-responsive" style="height:100px" src="data:image/jpeg;base64,'.base64_encode( $row['foto'] ).'"/>';
     }
     else {
       echo '<img title="profiel foto" class="img-circle img-responsive" src="data:image/jpeg;base64,'.base64_encode( $row['foto'] ).'"/>';
