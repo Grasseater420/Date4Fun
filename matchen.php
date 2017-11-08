@@ -62,7 +62,7 @@
     // echo $test[$rand_id[0]]['id'] . "<br>";
     // echo $test[$rand_id[1]]['id'];
     $i = 0;
-    echo "<div class=\"container\"><div class='row'>";
+    echo "<div class=\"container\"><div class=\"row equal\">";
     while ($i < 2) {
       echo "
         <div class='col-sm-6'>
@@ -71,8 +71,7 @@
               <div class=\"panel-heading\">
                 <h3>" . $test[$rand_id[$i]]['voornaam'] . "<a class=\"btn btn-default pull-right\" href=\"./profiel.php?id=" . $test[$rand_id[$i]]['id'] . "\">Profiel</a></h3>
               </div>
-              <div class=\"panel-body\">
-              test
+              <div class=\"panel-body\" style=\"min-height: 230px; text-align: center;\">
                 " . showProfielFoto($test[$rand_id[$i]]['id'], 'matchen') . "
               </div>
               <div class=\"panel-footer\">
@@ -82,6 +81,7 @@
           </div>
         </div>
         ";
+
       $i++;
     }
     echo "</div></div>";
@@ -98,16 +98,26 @@
 
     renderHead('Date4Fun Matchen');
     renderNavbar();
-    // renderJumbotron();
+    renderJumbotron();
 
   ?>
+  <link rel="stylesheet" href="./stylesheet.css">
 </head>
-<body>
-  <?php
+  <body>
+    <?php
 
-    renderMatch();
+      renderMatch();
 
-  ?>
-  </form>
-</body>
+    ?>
+    <script>
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close0")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    </script>
+  </body>
 </html>

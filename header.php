@@ -45,7 +45,7 @@
         ";
 
       echo "
-        <div class=\"modal fade\" id=\"loginModal\" role=\"dialog\">
+        <div id=\"loginModal\" class=\"modal fade\" role=\"dialog\">
           <div class=\"modal-dialog\">
             <div class=\"modal-content\">
               <div class=\"modal-header\">
@@ -206,7 +206,7 @@
 
     echo "<div class=\"container\">
             <div class=\"jumbotron\">
-              <h1>Date4Fun<br><small>Logo</small></h1>
+              <h1>Date4Fun</h1>
             </div>
           </div>";
   }
