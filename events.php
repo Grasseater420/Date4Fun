@@ -62,13 +62,24 @@
   function renderEvents() {
 
     include "config.php";
+    include "getImage.php";
 
     $query  = "
-      SELECT *
+      SELECT events.event_id, events.titel, events.omschrijving, events.locatie, events.foto, producten.prijs, producten.product_id
       FROM events
-      INNER JOIN producten
-      ON producten.event_id=events.event_id
-      ";
+      INNER JOIN producten ON events.event_id=producten.event_id
+      WHERE NOT events.event_id IN
+        (SELECT events.event_id
+        FROM events
+        LEFT JOIN producten
+          ON events.event_id=producten.event_id
+        LEFT JOIN bestellingen
+          ON events.event_id=bestellingen.product_id
+        LEFT JOIN gebruikers
+          ON bestellingen.gebruiker_id=gebruikers.gebruiker_id
+        WHERE gebruikers.gebruiker_id='" . $_SESSION['gebruikers_id'] . "')
+        ";
+
     $result = mysqli_query($db, $query);
 
     if (!$result) {
@@ -98,12 +109,10 @@
             </div>
             <div class=\"container-fluid\">
               <div class=\"thumbnail\">
-                <a href=\"" . $row['foto'] . "\">
-                  <img src=\"" . $row['foto'] . "\" class=\"img-responsive\">
-                  <div class=\"caption\">
+                  " . showEventFoto($row['event_id'],'events') . "
+                  <div class=\"caption\" style=\"text-align:center;\">
                     <h5>" . $row['locatie'] . "</h5>
                   </div>
-                </a>
               </div>
             </div>
           </div>

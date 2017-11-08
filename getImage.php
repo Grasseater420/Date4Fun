@@ -1,45 +1,53 @@
 <?php
 
+  function showProfielFoto($id, $type) {
 
-
-function renderHeader()
-{
-
-}
-
-function showProfielFoto($id, $type)
-{
     include "config.php";
-    $id = mysqli_real_escape_string($db, $id);
- $query = "SELECT foto FROM `profielen` WHERE gebruikers_id = '".$id."'";
-$result = mysqli_query($db, $query);
 
-$row = mysqli_fetch_assoc($result);
-$id = $row['foto'];
+    $id     = mysqli_real_escape_string($db, $id);
+    $query  = "
+      SELECT foto
+      FROM profielen
+      WHERE gebruikers_id = '" . $id . "'";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
 
+    if ($row["foto"]) {
 
+      if($type == "matchen") {
 
-if ($row["foto"])
-{
-    if($type == "matchen")
-    {
-     return'<img title="profiel foto" class="img-responsive" style="height:100px" src="data:image/jpeg;base64,'.base64_encode( $row['foto'] ).'"/>';
+        return '<img title="profiel foto" class="img-thumbnail" style="height:200px;" src="data:image/jpeg;base64,'.base64_encode( $row['foto'] ).'"/>';
+
+      }
+      else {
+        echo '<img title="profiel foto" class="img-circle img-responsive" src="data:image/jpeg;base64,'.base64_encode( $row['foto'] ).'"/>';
+      }
     }
-    else {
-      echo '<img title="profiel foto" class="img-circle img-responsive" src="data:image/jpeg;base64,'.base64_encode( $row['foto'] ).'"/>';
+  }
+
+  function showEventFoto($id, $type) {
+
+    include "config.php";
+
+    $id     = mysqli_real_escape_string($db, $id);
+    $query  = "
+      SELECT foto
+      FROM events
+      WHERE event_id = '" . $id . "'";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+
+    if ($row["foto"]) {
+
+      if($type == "events") {
+
+        return "<img style=\"height:200px;\" src=\"data:image/jpeg;base64," . base64_encode($row['foto']) . "\" class=\"img-responsive\">";
+
+      }
+      elseif($type == "profiel") {
+        echo "<img style=\"width:300px; height:100px;\" src=\"data:image/jpeg;base64," . base64_encode($row['foto']) . "\" class=\"img-responsive\">";
+      }
     }
-}
-else {
-
-}
-
-}
-
-
-
-
-
-
-
+  }
 
 ?>

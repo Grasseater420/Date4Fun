@@ -38,6 +38,20 @@ $query = "SELECT favorietefilm.titel FROM favorietefilm INNER JOIN profielen ON 
 $result = mysqli_query($db, $query);
 $film = mysqli_fetch_assoc($result);
 
+$query = "
+  SELECT *
+  FROM events
+  LEFT JOIN producten
+  	ON events.event_id=producten.event_id
+  LEFT JOIN bestellingen
+  	ON events.event_id=bestellingen.product_id
+  LEFT JOIN gebruikers
+  	ON bestellingen.gebruiker_id=gebruikers.gebruiker_id
+  WHERE gebruikers.gebruiker_id=$gebruiker_id
+  ";
+$result = mysqli_query($db, $query);
+$evenement = mysqli_fetch_assoc($result);
+
           if ($_SESSION['gebruikers_id'] == $gebruiker_id)
           {
               $eigenprofiel= true;
@@ -170,7 +184,7 @@ $film = mysqli_fetch_assoc($result);
 				</div>
 				<div class="col-md-4">
 					<div class="thumbnail">
-						<img alt="300x200" src="http://lorempixel.com/600/200/sports">
+						<?php showEventFoto($evenement['event_id'],'profiel') ?>
 						<div class="caption">
 							<h3>
 								Rocky
