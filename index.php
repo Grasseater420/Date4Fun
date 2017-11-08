@@ -22,8 +22,24 @@
 }
 
 </style>
+
+<?php
+
+error_reporting(0);
+ 
+
+        session_start();
+        if (isset($_SESSION['gebruikers_id']))
+        {
+            
+            header("Location:profiel.php?id=".$_SESSION['gebruikers_id']."");
+        }
+        
+        ?>
   
   <?php include 'header.php'; renderNavbar(); renderJumbotron()?>
+
+
 </head>
 <body>
 
@@ -193,12 +209,6 @@
                         $result = mysqli_query($db, $query);
                    
 
-			echo "<h3>De volgende gegevens zijn ingevuld:</h3>";
-			echo "Naam: <b>$voornaam $achternaam</b><br>";
-			echo "Gebruikersnaam: <b>$gebruikersnaam</b><br>";
-			echo "Wachtwoord: <b>$wachtwoord</b><br>";
-			echo "E-mailadres: <b>$email</b><br>";
-			echo "Geboortedatum: <b>$geboortedatum</b><br><br>";
 
 			//Aanmaken profiel
 			//GebruikersID verkrijgen
@@ -215,10 +225,24 @@
                         
 
 			$result = mysqli_query($db, $query);
-
-			//Welkom bericht, doorsturen naar Login pagina
-			echo "Welkom ".$voornaam.", bedankt voor het registreren.<br>";
-			echo "<a href='http://localhost/Date4Fun/loginForm.php'>Login!</a>";
+                        
+                        ?>
+    
+    <br>
+    <br>
+        <div class="container">
+	<div class="row">
+            <div class="col-md-8">
+                <div class="alert alert-success">
+  <strong>Bedankt voor het registreren  </strong> U kunt nu inloggen met uw gebruikersnaam
+</div>
+            </div>
+        </div>
+        </div>
+    
+    
+    
+    <?php
 
 			//function stuurMail($email, $voornaam){
 				//$to = $email;
@@ -358,7 +382,7 @@
     
    
 
-		if (empty($_POST["email"]) || empty($_POST["gebruikersnaam"]) || empty($_POST["wachtwoord"]) || empty($_POST["bwachtwoord"]) || empty($_POST["voornaam"]) || empty($_POST["achternaam"]) || !isset($_POST["dd"]) || !isset($_POST["mm"]) || !isset($_POST["yy"])){
+		if (empty($_POST["email"]) || empty($_POST["gebruikersnaam"]) || empty($_POST["wachtwoord"]) || empty($_POST["bwachtwoord"]) || empty($_POST["voornaam"]) || empty($_POST["achternaam"]) || !isset($_POST["dd"]) || !isset($_POST["mm"]) || !isset($_POST["yyyy"])){
 			
                       echo "<div class=\"container\">";
                       echo "<div class=\"alert alert-danger\">";

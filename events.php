@@ -56,6 +56,18 @@
   // ░░░░█░░░░░░░░░▀▄░░▐░░░▀▄░░░▀▀▄▄
   // ░░░░░▀▄░▄▀█░░░░░█░░▌░░░░▀▄░░░░░█
   ////
+  error_reporting(0);
+  
+  session_start();
+          if ($_SESSION['gebruikers_id'] == NULL)
+        {
+            
+             header("Location:index.php");
+        }
+               if ($_SESSION['membership'] == "Gratis")
+{
+    header("Location: memberships.php");
+}
 
   include "config.php";
 

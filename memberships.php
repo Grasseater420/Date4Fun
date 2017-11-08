@@ -1,4 +1,14 @@
   <?php
+  
+  error_reporting(0);
+  
+  session_start();
+                if ($_SESSION['gebruikers_id'] == NULL)
+        {
+            
+             header("Location:index.php");
+        }
+        
   // include "config.php";
   // function laatMemZien(){
   //   //Connectie met de database
@@ -27,6 +37,8 @@
 <?php
 
   include "config.php";
+  
+  
 
   function renderMemberships() {
 
