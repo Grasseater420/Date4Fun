@@ -4,7 +4,7 @@
 
 function renderHeader()
 {
-    
+
 }
 
 function showProfielFoto($id, $type)
@@ -23,14 +23,14 @@ if ($row["foto"])
 {
     if($type == "matchen")
     {
-     echo '<img title="profiel foto" class="img-circle img-responsive" src="data:image/jpeg;base64,'.base64_encode( $row['foto'] ).'"/>';
+     echo '<img title="profiel foto" class="img-responsive" style="height:100px" src="data:image/jpeg;base64,'.base64_encode( $row['foto'] ).'"/>';
     }
     else {
-         echo '<img title="profiel foto" class="img-circle" src="data:image/jpeg;base64,'.base64_encode( $row['foto'] ).'"/>';
+      echo '<img title="profiel foto" class="img-circle img-responsive" src="data:image/jpeg;base64,'.base64_encode( $row['foto'] ).'"/>';
     }
 }
 else {
-   
+
 }
 
 }
@@ -43,4 +43,3 @@ else {
 
 
 ?>
-
