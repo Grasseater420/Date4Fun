@@ -85,8 +85,9 @@
         }
     }
     else {
+
       if(isset($_SESSION['winkelwagen'])) {
-        $aantalInWinkelwagen  = count($_SESSION['winkelwagen']);
+        $aantalInWinkelwagen = count($_SESSION['winkelwagen']);
       }
       else {
         $aantalInWinkelwagen = 0;
@@ -97,7 +98,7 @@
           <div class=\"container-fluid\">
             <ul class=\"nav navbar-nav\">
               <li>";
-              if ($_SESSION['isAdmin'] == true) {
+              if ($_SESSION['isAdmin'] = true) {
                 echo "<a href=\"./admin_page.php\">
                         <button type=\"button\" class=\"btn btn-link\">
                           <span class=\"glyphicon glyphicon-user\"></span> Admin
@@ -129,8 +130,8 @@
               </li>
               <li>";
 
-              $url = $_SERVER['PHP_SELF'];
-              $explode = explode('fun', $url);
+              $url      = $_SERVER['PHP_SELF'];
+              $explode  = explode('fun', $url);
               // echo $explode[1];
               if ($explode[1] == "/matchen.php") {
 

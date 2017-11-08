@@ -10,9 +10,11 @@
     $query      = "SELECT * FROM gebruikers WHERE gebruikersnaam ='" . $_POST["gebruikersnaam"] ."'";
     $result     = mysqli_query($db, $query) or die("FOUT: " . mysqli_error());
 
-    $row = mysqli_fetch_assoc($result);
+    while ($row = mysqli_fetch_assoc($result)) {
+      $isAdmin = $row['admin'];
+      $hash = $row['wachtwoord'];
+    }
 
-    $hash = $row['wachtwoord'];
 
 
     if(password_verify($wachtwoord, $hash)){
@@ -23,8 +25,6 @@
 
       while ($row = mysqli_fetch_assoc($result)) {
         $isAdmin = $row['admin'];
-
-
       }
 
       if ($isAdmin == true) {
@@ -40,6 +40,29 @@
   		  $total    = $row[0];
 
         logInSessieGebruiker($total);
+
+        $gebruikersid_sessie = $_SESSION['gebruikers_id'];
+
+        $query = "
+          SELECT omschrijving, expires
+          FROM membership
+          LEFT JOIN members ON membership.membership_id = members.membership_id
+          LEFT JOIN gebruikers ON gebruikers.gebruiker_id = members.gebruiker_id
+          WHERE gebruikers.gebruiker_id = $gebruikersid_sessie
+        ";
+        $result = mysqli_query($db, $query);
+        $membership = mysqli_fetch_assoc($result);
+
+
+        if (empty($membership['omschrijving']))
+        {
+            $_SESSION['membership'] = "Gratis";
+        }
+        else {
+            $_SESSION['membership'] = $membership['omschrijving'];
+            $_SESSION['membership_expires'] = $membership['expires'];
+        }
+
         $_SESSION['isAdmin'] = false;
         header("Location:profiel.php?id=".$total."");
         exit();
