@@ -150,55 +150,93 @@ $evenement = mysqli_fetch_assoc($result);
                 <div class="panel-heading" contenteditable="false"><h3>Evenementen</h3></div>
                 <div class="panel-body">
                   <div class="row">
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<img alt="300x200" src="http://lorempixel.com/600/200/people">
-						<div class="caption">
-							<h3>
-								Rover
-							</h3>
-							<p>
-								Cocker Spaniel who loves treats.
-							</p>
-							<p>
+                    <?php
 
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<img alt="300x200" src="http://lorempixel.com/600/200/city">
-						<div class="caption">
-							<h3>
-								Marmaduke
-							</h3>
-							<p>
-								Is just another friendly dog.
-							</p>
-							<p>
+                      function renderEvenementen() {
 
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<?php showEventFoto($evenement['event_id'],'profiel') ?>
-						<div class="caption">
-							<h3>
-								Rocky
-							</h3>
-							<p>
-								Loves catnip and naps. Not fond of children.
-							</p>
-							<p>
+                        include "config.php";
+                        // include "getImage.php";
 
-							</p>
-						</div>
-                </div>
+                        $query = "
+                          SELECT *
+                          FROM events
+                          LEFT JOIN producten
+                          	ON events.event_id=producten.event_id
+                          LEFT JOIN bestellingen
+                          	ON events.event_id=bestellingen.product_id
+                          LEFT JOIN gebruikers
+                          	ON bestellingen.gebruiker_id=gebruikers.gebruiker_id
+                          WHERE gebruikers.gebruiker_id='29'
+                          ";
+                        $result = mysqli_query($db, $query);
 
-            </div>
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $evenementen[] = array(
+                              'id'            => $row['event_id'],
+                              'titel'         => $row['titel'],
+                              'datum'         => $row['datum'],
+                              'foto'          => $row['foto'],
+                              'locatie'       => $row['locatie'],
+                              'omschrijving'  => $row['omschrijving']
+                          );
+                        }
+
+                        static $i = 0;
+                        // var_dump($evenementen[$i]['id']);
+                        while ($i < count($evenementen)) {
+                          echo "
+                            <div class=\"col-md-4\">
+                              <div class=\"thumbnail\">
+                                <div class=\"image\" style=\"position:relative; overflow:hidden; padding-bottom:100px; \">
+                                  " . showEventFoto($evenementen[$i]['id'],'profiel') . "
+                                </div>
+                                <div class=\"caption\">
+                                  <h3>
+                                    " . $evenementen[$i]['titel'] . "
+                                  </h3>
+                                  <p>
+                                    " . $evenementen[$i]['locatie'] . ", " . $evenementen[$i]['datum'] . "
+                                  </p>
+                                    " . $evenementen[$i]['omschrijving'] . "
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            ";
+                          $i++;
+                        }
+                        if ($i < 3) {
+                          while ($i < 3) {
+                            echo "
+                              <div class=\"col-md-4\">
+                                <div class=\"thumbnail\">
+                                  <div class=\"image\" style=\"position:relative; overflow:hidden; padding-bottom:100px;\">
+                                    <img style=\"position:absolute; margin-top:-65px\" src=\"./eventpics/placeholder.jpg\" class=\"center-block img-responsive\">
+                                  </div>
+                                  <div class=\"caption\">
+                                    <h3>
+                                      Geen evenementen
+                                    </h3>
+                                    <p>
+                                      Geen locatie
+                                    </p>
+                                      Geen datum
+                                    <p>
+                                      Test
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              ";
+                              $i++;
+                          }
+                        }
+                      }
+
+                      renderEvenementen();
+
+                     ?>
+
 
             </div>
 

@@ -41,11 +41,11 @@
 
       if($type == "events") {
 
-        return "<img style=\"height:200px;\" src=\"data:image/jpeg;base64," . base64_encode($row['foto']) . "\" class=\"img-responsive\">";
+        return "<img style=\"height:200px; margin-top:-65px\" src=\"data:image/jpeg;base64," . base64_encode($row['foto']) . "\" class=\"img-responsive\">";
 
       }
       elseif($type == "profiel") {
-        echo "<img style=\"width:300px; height:100px;\" src=\"data:image/jpeg;base64," . base64_encode($row['foto']) . "\" class=\"img-responsive\">";
+        return "<img style=\"position:absolute\" src=\"data:image/jpeg;base64," . base64_encode($row['foto']) . "\" class=\"img img-responsive full-width\">";
       }
     }
   }
