@@ -25,20 +25,6 @@
   renderHead('Date4Fun Profiel');
   renderNavbar();
 
-  if(isset($_GET['man'])){
-    $query = "UPDATE profielen SET geintereseerd='Man' WHERE gebruikers_id='".$_SESSION['gebruikers_id']."'";
-    $result = mysqli_query($db, $query);
-  }
-
-  elseif(isset($_GET['vrouw'])){
-    $query = "UPDATE profielen SET geintereseerd='Vrouw' WHERE gebruikers_id='".$_SESSION['gebruikers_id']."'";
-    $result = mysqli_query($db, $query);
-  }
-
-
-
-
-
   if (isset($_GET['id']) && !is_null($_GET['id']) && is_numeric($_GET['id']))
   {
     $gebruiker_id = $_GET['id'];
@@ -136,7 +122,7 @@
                     <h4 class="modal-title pull-left">Interesse aanpassen</h4>
                   </div>
                   <div class="modal-body pull-left">
-                    <form action="profiel.php" method="post">
+                    <form action="profiel.php?id=<?php echo $gebruiker_id ?>" method="post">
                       <table style="border-collapse: separate;
     border-spacing: 10px;">
                         <tr>
@@ -732,6 +718,19 @@ _qevents.push({
 
 <script src="/plugins/bootstrap-pager.js"></script>
 </div>
+
+
+<?php
+if(isset($_POST['man'])){
+  $query = "UPDATE profielen SET geintereseerd='Man' WHERE gebruikers_id='".$gebruiker_id."'";
+  $result = mysqli_query($db, $query);
+}
+
+elseif(isset($_POST['vrouw'])){
+  $query = "UPDATE profielen SET geintereseerd='Vrouw' WHERE gebruikers_id='".$gebruiker_id."'";
+  $result = mysqli_query($db, $query);
+}
+ ?>
 
 </body>
 
