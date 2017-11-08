@@ -98,73 +98,73 @@
             <ul class=\"nav navbar-nav\">
               <li>";
               if ($_SESSION['isAdmin'] == true) {
-                echo "<a href=\"./admin_page.php\">
-                        <button type=\"button\" class=\"btn btn-link\">
-                          <span class=\"glyphicon glyphicon-user\"></span> Admin
-                        </button>";
+      echo "    <a href=\"./admin_page.php\">
+                  <button type=\"button\" class=\"btn btn-link\">
+                    <span class=\"glyphicon glyphicon-user\"></span> Admin
+                  </button>
+                </a>
+              </li>";
               }
               else {
-                echo "<a href=\"./profiel.php?id=" . $_SESSION['gebruikers_id'] . "\">
-                        <button type=\"button\" class=\"btn btn-link\">
-                          <span class=\"glyphicon glyphicon-user\"></span> Mijn profiel
-                        </button>";
-              }
+      echo "    <a href=\"./profiel.php?id=" . $_SESSION['gebruikers_id'] . "\">
+                  <button type=\"button\" class=\"btn btn-link\">
+                    <span class=\"glyphicon glyphicon-user\"></span> Mijn profiel
+                  </button>
+                  </a>
+                </li>
+                <li>
+                  <a href=\"./memberships.php\">
+                    <button type=\"button\" class=\"btn btn-link\">
+                      Memberships
+                    </button>
+                  </a>
+                </li>
+                <li>
+                  <a href=\"./events.php\">
+                    <button type=\"button\" class=\"btn btn-link\">
+                      Events
+                    </button>
+                  </a>
+                </li>
+                <li>";
 
-      echo "
-                </a>
-              </li>
-              <li>
-                <a href=\"./memberships.php\">
-                  <button type=\"button\" class=\"btn btn-link\">
-                    Memberships
-                  </button>
-                </a>
-              </li>
-              <li>
-                <a href=\"./events.php\">
-                  <button type=\"button\" class=\"btn btn-link\">
-                    Events
-                  </button>
-                </a>
-              </li>
-              <li>";
+                $url = $_SERVER['PHP_SELF'];
+                $explode = explode('fun', $url);
+                // echo $explode[1];
+                if ($explode[1] == "/matchen.php") {
+      echo "      <a href=\"./matchen.php\">
+                    <button type=\"button\" class=\"btn btn-link\">
+                      Nieuwe Match
+                    </button>
+                  </a>";
+                }
+                else {
+      echo "      <a href=\"./matchen.php\">
+                    <button type=\"button\" class=\"btn btn-link\">
+                      Matchen
+                    </button>
+                  </a>";
+                }
+      echo "    </li>
+              </ul>
+              <ul class=\"nav navbar-nav navbar-right\">
+                <li>
+                  <a href=\"./winkelwagen.php?overzicht\">
+                    <button type=\"button\" class=\"btn btn-link\">
+                      <span class=\"glyphicon glyphicon-shopping-cart\"></span> Winkelwagen ($aantalInWinkelwagen)
+                    </button>
+                  </a>
+                </li>";
+                }
 
-              $url = $_SERVER['PHP_SELF'];
-              $explode = explode('fun', $url);
-              // echo $explode[1];
-              if ($explode[1] == "/matchen.php") {
-
-      echo "
-                <a href=\"./matchen.php\">
-                  <button type=\"button\" class=\"btn btn-link\">
-                    Nieuwe Match
-                  </button>
-                </a>";
-              }
-              else {
-      echo "
-                <a href=\"./matchen.php\">
-                  <button type=\"button\" class=\"btn btn-link\">
-                    Matchen
-                  </button>
-                </a>";
-              }
-      echo "
-              </li>
-            </ul>
-            <ul class=\"nav navbar-nav navbar-right\">
-              <li>
-                <a href=\"./winkelwagen.php?overzicht\">
-                  <button type=\"button\" class=\"btn btn-link\">
-                    <span class=\"glyphicon glyphicon-shopping-cart\"></span> Winkelwagen ($aantalInWinkelwagen)
-                  </button>
-                </a>
-              </li>
-              <li>
-                <a href=\"./logout.php\">
-                  <button type=\"button\" class=\"btn btn-link\">
-                    <span class=\"glyphicon glyphicon-log-out\"></span>
-                    Uitloggen
+                if ($_SESSION['isAdmin'] == true) {
+                  echo "</ul><ul class=\"nav navbar-nav navbar-right\">";
+                }
+      echo "    <li>
+                  <a href=\"./logout.php\">
+                    <button type=\"button\" class=\"btn btn-link\">
+                      <span class=\"glyphicon glyphicon-log-out\"></span>
+                      Uitloggen
                   </button>
                 </a>
               </li>
