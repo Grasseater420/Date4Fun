@@ -28,6 +28,7 @@
 
         logInSessieGebruiker($total);
         
+       
         
         $gebruikersid_sessie = $_SESSION['gebruikers_id'];
 
@@ -48,6 +49,8 @@ else {
     $_SESSION['membership'] = $membership['omschrijving'];
     $_SESSION['membership_expires'] = $membership['expires'];
 }
+
+
 
 
         

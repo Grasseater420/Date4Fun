@@ -98,7 +98,14 @@ $evenement = mysqli_fetch_assoc($result);
 
           if ($eigenprofiel)
           {
-              echo "<h2><span class=\"label label-info\">U heeft een goldmembership deze verloopt op 20-11-2017</span></h2> ";
+          if ($_SESSION['membership'] == "Gratis"){
+              echo "<h2><span class=\"label label-warning\"><span class=\"glyphicon glyphicon-alert\"></span> U heeft een gratis membership!</span></h2> ";
+              
+          }
+          else {
+              echo "<h2><span class=\"label label-info\">U heeft een ".$_SESSION['membership']." deze verloopt op ".$_SESSION['membership_expires']."</span></h2> ";
+          }
+              
           }
           else {
               echo "<button type=\"button\" class=\"btn btn-info\">Stuur mij een bericht</button>";
