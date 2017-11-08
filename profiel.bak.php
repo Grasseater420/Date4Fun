@@ -1,8 +1,6 @@
 <html>
   <head>
 
-      
-      
 
 
       <?php
@@ -10,8 +8,6 @@
 
 
         session_start();
-        
-        
 
 
         if ($_SESSION['gebruikers_id'] == NULL)
@@ -171,15 +167,15 @@ $film = mysqli_fetch_assoc($result);
                         // include "getImage.php";
 
                         $query = "
-                        SELECT events.titel, events.omschrijving, events.locatie, events.datum, events.foto
-FROM producten
-LEFT JOIN events
-ON events.event_id=producten.event_id
-INNER JOIN bestellingen
-ON bestellingen.product_id=producten.product_id
-WHERE bestellingen.gebruiker_id='" . $_SESSION['gebruikers_id'] . "'
-AND producten.event_id IS NOT NULL
-                          ";
+                          SELECT events.titel, events.omschrijving, events.locatie, events.datum, events.foto
+                          FROM producten
+                          LEFT JOIN events
+                          ON events.event_id=producten.event_id
+                          INNER JOIN bestellingen
+                          ON bestellingen.product_id=producten.product_id
+                          WHERE bestellingen.gebruiker_id='" . $_SESSION['gebruikers_id'] . "'
+                          AND producten.event_id IS NOT NULL
+                        ";
                         $result = mysqli_query($db, $query);
 
                         while ($row = mysqli_fetch_assoc($result)) {
