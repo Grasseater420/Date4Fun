@@ -8,7 +8,7 @@
         SELECT bestellingen.besteldatum
         FROM bestellingen
         LEFT JOIN gebruikers ON bestellingen.gebruiker_id=gebruikers.gebruiker_id
-        LEFT JOIN producten ON bestellingen.product_id=producten.product_id
+        LEFT JOIN producten ON bestellingen.product_idg=producten.product_id
         WHERE producten.event_id IS NULL
         AND gebruikers.`gebruiker_id`='" . $id . "'
       ";

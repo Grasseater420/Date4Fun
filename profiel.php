@@ -1,6 +1,8 @@
 <html>
   <head>
 
+      
+      
 
 
       <?php
@@ -8,6 +10,8 @@
 
 
         session_start();
+        
+        
 
 
         if ($_SESSION['gebruikers_id'] == NULL)
