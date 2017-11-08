@@ -1,25 +1,23 @@
-  <?php
+logInSessieGebruiker($total);
 
-    function VervalDatum($id) {
 
-      include "config.php";
 
-      $query = "
-        SELECT bestellingen.besteldatum
-        FROM bestellingen
-        LEFT JOIN gebruikers ON bestellingen.gebruiker_id=gebruikers.gebruiker_id
-        LEFT JOIN producten ON bestellingen.product_id=producten.product_id
-        WHERE producten.event_id IS NULL
-        AND gebruikers.`gebruiker_id`='" . $id . "'
-      ";
+$gebruikersid_sessie = $_SESSION['gebruikers_id'];
 
-      $result = mysqli_query($db, $query) or die("FOUT: " . mysqli_error());
+$query = "SELECT omschrijving, expires
+FROM membership
+LEFT JOIN members ON membership.membership_id = members.membership_id
+LEFT JOIN gebruikers ON gebruikers.gebruiker_id = members.gebruiker_id
+WHERE gebruikers.gebruiker_id = $gebruikersid_sessie ";
+$result = mysqli_query($db, $query);
+$membership = mysqli_fetch_assoc($result);
 
-      while ($row = mysqli_fetch_assoc($result)) {
-        echo $row['besteldatum'] . "<br>";
-      }
-    }
 
-    VervalDatum(29)
-
-  ?>
+if (empty($membership['omschrijving']))
+{
+$_SESSION['membership'] = "Gratis";
+}
+else {
+$_SESSION['membership'] = $membership['omschrijving'];
+$_SESSION['membership_expires'] = $membership['expires'];
+}
