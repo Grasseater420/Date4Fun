@@ -45,7 +45,7 @@
 
       }
       elseif($type == "profiel") {
-        return "<img style=\"position:absolute; margin-top:-65px\" src=\"data:image/jpeg;base64," . base64_encode($row['foto']) . "\" class=\"img img-responsive full-width\">";
+        return "<img style=\"position:absolute\" src=\"data:image/jpeg;base64," . base64_encode($row['foto']) . "\" class=\"img img-responsive full-width\">";
       }
     }
   }

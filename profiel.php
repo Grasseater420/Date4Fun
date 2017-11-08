@@ -104,12 +104,12 @@
       <div class="col-sm-3">
         <!--left col-->
         <ul class="list-group">
-          <li class="list-group-item text-muted" contenteditable="false"><h4>Profiel</h4></li>
+          <li class="list-group-item text-muted" contenteditable="false"><h4>Profiel<button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#geinAanpassen">Aanpassen</button></h4></li>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Vandaag</li>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Echte naam</strong></span> <?php echo $gebruiker['voornaam']; ?></li>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Geïnteresseerd in: </strong></span> <?php echo $profiel['geintereseerd']; ?>
             <!--Modal Trigger-->
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#geinAanpassen">Aanpassen</button>
+
 
             <!-- Modal -->
             <div id="geinAanpassen" class="modal fade" role="dialog">
@@ -332,25 +332,25 @@
               // include "getImage.php";
 
               $query = "
-              SELECT events.titel, events.omschrijving, events.locatie, events.datum, events.foto
-              FROM producten
-              LEFT JOIN events
-              ON events.event_id=producten.event_id
-              INNER JOIN bestellingen
-              ON bestellingen.product_id=producten.product_id
-              WHERE bestellingen.gebruiker_id='" . $_SESSION['gebruikers_id'] . "'
-              AND producten.event_id IS NOT NULL
+                SELECT events.titel, events.omschrijving, events.locatie, events.datum, events.foto, events.event_id
+                FROM producten
+                LEFT JOIN events
+                ON events.event_id=producten.event_id
+                INNER JOIN bestellingen
+                ON bestellingen.product_id=producten.product_id
+                WHERE bestellingen.gebruiker_id='" . $_SESSION['gebruikers_id'] . "'
+                AND producten.event_id IS NOT NULL
               ";
               $result = mysqli_query($db, $query);
 
               while ($row = mysqli_fetch_assoc($result)) {
                 $evenementen[] = array(
-                  'id'            => $row['event_id'],
-                  'titel'         => $row['titel'],
-                  'datum'         => $row['datum'],
-                  'foto'          => $row['foto'],
-                  'locatie'       => $row['locatie'],
-                  'omschrijving'  => $row['omschrijving']
+                    'id'            => $row['event_id'],
+                    'titel'         => $row['titel'],
+                    'datum'         => $row['datum'],
+                    'foto'          => $row['foto'],
+                    'locatie'       => $row['locatie'],
+                    'omschrijving'  => $row['omschrijving']
                 );
               }
 
@@ -358,24 +358,24 @@
               // var_dump($evenementen[$i]['id']);
               while ($i < count($evenementen)) {
                 echo "
-                <div class=\"col-md-4\">
-                <div class=\"thumbnail\">
-                <div class=\"image\" style=\"position:relative; overflow:hidden; padding-bottom:100px; \">
-                " . showEventFoto($evenementen[$i]['id'],'profiel') . "
-                </div>
-                <div class=\"caption\">
-                <h3>
-                " . $evenementen[$i]['titel'] . "
-                </h3>
-                <p>
-                " . $evenementen[$i]['locatie'] . ", " . $evenementen[$i]['datum'] . "
-                </p>
-                " . $evenementen[$i]['omschrijving'] . "
-                </p>
-                </div>
-                </div>
-                </div>
-                ";
+                  <div class=\"col-md-4\">
+                    <div class=\"thumbnail\">
+                      <div class=\"image\" style=\"position:relative; overflow:hidden; padding-bottom:100px;\">
+                        " . showEventFoto($evenementen[$i]['id'],'profiel') . "
+                      </div>
+                      <div class=\"caption\">
+                        <h3>
+                          " . $evenementen[$i]['titel'] . "
+                        </h3>
+                        <p>
+                          " . $evenementen[$i]['locatie'] . ", " . $evenementen[$i]['datum'] . "
+                        </p>
+                          " . $evenementen[$i]['omschrijving'] . "
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  ";
                 $i++;
 
               }
@@ -383,23 +383,22 @@
                 while ($i < 3) {
                   echo "
                   <div class=\"col-md-4\">
-                  <div class=\"thumbnail\">
-                  <div class=\"image\" style=\"position:relative; overflow:hidden; padding-bottom:100px;\">
-                  <img style=\"position:absolute; margin-top:-65px\" src=\"./eventpics/placeholder.jpg\" class=\"center-block img-responsive\">
-                  </div>
-                  <div class=\"caption\">
-                  <h3>
-                  Geen evenementen
-                  </h3>
-                  <p>
-                  Geen locatie
-                  </p>
-                  Geen datum
-                  <p>
-                  Test
-                  </p>
-                  </div>
-                  </div>
+                    <div class=\"thumbnail\">
+                      <div class=\"image\" style=\"position:relative; overflow:hidden; padding-bottom:100px;\">
+                        <img style=\"position:absolute; margin-top:-65px\" src=\"./eventpics/placeholder.jpg\" class=\"center-block img-responsive\">
+                      </div>
+                      <div class=\"caption\">
+                        <h3>
+                          Geen evenementen
+                        </h3>
+                        <p>
+                          Geen locatie
+                        </p>
+                        </p>
+                          Geen omschrijving
+                        </p>
+                      </div>
+                    </div>
                   </div>
                   ";
                   $i++;
