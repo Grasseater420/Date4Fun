@@ -1,18 +1,18 @@
 <html>
   <head>
-      
-      
-      
+
+
+
       <?php
       error_reporting(0);
- 
+
 
         session_start();
-        
-        
+
+
         if ($_SESSION['gebruikers_id'] == NULL)
         {
-            
+
              header("Location:index.php");
         }
 ?>
@@ -100,12 +100,12 @@ $evenement = mysqli_fetch_assoc($result);
           {
           if ($_SESSION['membership'] == "Gratis"){
               echo "<h2><span class=\"label label-warning\"><span class=\"glyphicon glyphicon-alert\"></span> U heeft een gratis membership!</span></h2> ";
-              
+
           }
           else {
               echo "<h2><span class=\"label label-info\">U heeft een ".$_SESSION['membership']." deze verloopt op ".$_SESSION['membership_expires']."</span></h2> ";
           }
-              
+
           }
           else {
               echo "<button type=\"button\" class=\"btn btn-info\">Stuur mij een bericht</button>";
@@ -189,7 +189,7 @@ $evenement = mysqli_fetch_assoc($result);
                           	ON events.event_id=bestellingen.product_id
                           LEFT JOIN gebruikers
                           	ON bestellingen.gebruiker_id=gebruikers.gebruiker_id
-                          WHERE gebruikers.gebruiker_id='29'
+                          WHERE gebruikers.gebruiker_id='" . $_SESSION['gebruikers_id'] . "'
                           ";
                         $result = mysqli_query($db, $query);
 
@@ -227,6 +227,7 @@ $evenement = mysqli_fetch_assoc($result);
                             </div>
                             ";
                           $i++;
+
                         }
                         if ($i < 3) {
                           while ($i < 3) {
