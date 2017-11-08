@@ -1,5 +1,28 @@
 <html>
   <head>
+      
+      
+      
+      <?php
+      error_reporting(0);
+ 
+
+        session_start();
+        
+        
+        if ($_SESSION['gebruikers_id'] == NULL)
+        {
+            
+             header("Location:index.php");
+        }
+        
+        if ($_SESSION['membership'] == "Gratis")
+{
+    header("Location: memberships.php");
+}
+        
+        ?>
+      
     <?php
 
       include "header.php";
@@ -22,6 +45,8 @@ else{
 }
 
 
+
+
 $query = "SELECT * FROM profielen WHERE gebruikers_id=$gebruiker_id";
 $result = mysqli_query($db, $query);
 $profiel = mysqli_fetch_assoc($result);
@@ -37,6 +62,13 @@ $muziek= mysqli_fetch_assoc($result);
 $query = "SELECT favorietefilm.titel FROM favorietefilm INNER JOIN profielen ON favorietefilm.film_id=profielen.favorietefilm WHERE profielen.gebruikers_id = $gebruiker_id";
 $result = mysqli_query($db, $query);
 $film = mysqli_fetch_assoc($result);
+
+
+
+
+
+
+
 
           if ($_SESSION['gebruikers_id'] == $gebruiker_id)
           {
@@ -68,7 +100,17 @@ $film = mysqli_fetch_assoc($result);
 
           if ($eigenprofiel)
           {
-              echo "<h2><span class=\"label label-info\">U heeft een goldmembership deze verloopt op 20-11-2017</span></h2> ";
+              
+              if ($_SESSION['membership'] == "Gratis")
+              {
+                  echo "<h2><span class=\"label label-info\">U bent een gratis lid! koop een membership</span></h2> ";
+              
+              }
+              else {
+                  
+                  echo "<h2><span class=\"label label-info\">U heeft een ".$_SESSION['membership']." deze verloopt op ".$_SESSION['membership_expires']."</span></h2> ";
+                  
+              }
           }
           else {
               echo "<button type=\"button\" class=\"btn btn-info\">Stuur mij een bericht</button>";
