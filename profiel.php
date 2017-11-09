@@ -90,7 +90,9 @@
 
         }
         else {
-          echo "<button type=\"button\" class=\"btn btn-info\">Stuur mij een bericht</button>";
+            $email = $gebruiker["email"];
+            $gebruikernaam = $gebruiker["voornaam"];
+          echo "<a href=\"mailto:$email\"><button type=\"button\" class=\"btn btn-info\">Stuur $gebruikernaam een mail</button></a>";
         }
         ?>
         <br>
@@ -355,7 +357,7 @@
 
 
         </h3></div>
-        <div class="panel-body"> <blockquote class="blockquote"> <?php echo $profiel['overmij']; ?> </blockquote>
+        <div class="panel-body"> <blockquote class="blockquote"> <?php echo htmlspecialchars($profiel['overmij']); ?> </blockquote>
 
         </div>
       </div>

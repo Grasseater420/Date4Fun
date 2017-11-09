@@ -20,13 +20,18 @@
       
       $expires = date('Y-m-d', strtotime("+30 days"));
       
+
+
       
       foreach ($producten as $product)
       {
           
+          
           $query = "INSERT INTO `bestellingen`(`gebruiker_id`, `product_id`, `besteldatum`) VALUES ('$gebruiker_id','$product','$datum')";
           
           $result = mysqli_query($db, $query);
+          
+
           
           
             $query = "SELECT titel
@@ -44,12 +49,22 @@
                 $result = mysqli_query($db, $query);
           
           
-          
+
       }
   
   
   
-      $gebruikersid_sessie = $_SESSION['gebruikers_id'];
+
+      
+
+ 
+
+  
+  
+  
+      }
+      
+            $gebruikersid_sessie = $_SESSION['gebruikers_id'];
 
         $query = "
           SELECT omschrijving, expires
@@ -81,14 +96,6 @@
         
         header('Refresh: 3; url=./index.php');
         exit();
-      
-
- 
-
-  
-  
-  
-      }
   }
             
   
