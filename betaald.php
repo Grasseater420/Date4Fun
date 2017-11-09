@@ -26,7 +26,6 @@
           
           $query = "INSERT INTO `bestellingen`(`gebruiker_id`, `product_id`, `besteldatum`) VALUES ('$gebruiker_id','$product','$datum')";
           
-          var_dump($query);
           $result = mysqli_query($db, $query);
           
           
@@ -75,6 +74,7 @@
         }
 
         $_SESSION['isAdmin'] = false;
+        $_SESSION["winkelwagen"] = NULL;
         
         echo "<h1>Bedankt voor uw bestelling!</h1>";
         echo "U word binnen 3 seconden, geredirect naar uw profiel";

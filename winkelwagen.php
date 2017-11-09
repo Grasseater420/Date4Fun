@@ -176,6 +176,7 @@ if (1 ==1) // moet niet ingelogd
 
                 while($product = mysqli_fetch_assoc($result))
                 {
+                    $prijs_totaal += $product['prijs'];
                   ?>
 
 
@@ -220,14 +221,45 @@ if (1 ==1) // moet niet ingelogd
                             <div class="panel-footer">
               <div class="row text-center">
                 <div class="col-xs-9">
-                  <h4 class="text-right">Totaal <strong>50.00</strong></h4>
-                  
-                                                   <?php
-                                                        if (!empty($korting['waarde'])){
-                                                            //echo "uw korting: ".$korting['waarde'];
+                  <h4 class="text-right">Totaal <strong>
+                      <?php 
+                      
+                      
+                      
+                      
+                      
+                              
+                       if (!empty($korting['waarde'])){
+                           
+                           
+                          
+                           
+                          
+                           
+                           $waardeINT = intval($korting["waarde"]);
+                           
                             
-                                                        }
-                                                        ?>
+                            $prijsMetKorting = (100-$waardeINT) / 100 * $prijs_totaal;
+                            ;
+                           echo " - ".$korting['waarde']." % KORTING:   ";
+                           echo $prijsMetKorting;
+                           
+                           
+                      
+                            
+                        }
+                        else {
+                            echo $prijs_totaal;
+                        }
+                                                        
+                              ?>
+                      
+                      
+                      
+                      
+                      </strong></h4>
+                  
+
  
                 </div>
                 <div class="col-xs-3">
