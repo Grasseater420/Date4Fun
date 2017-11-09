@@ -113,11 +113,12 @@
           (SELECT gebruikers.geslacht
           FROM gebruikers
             WHERE gebruikers.gebruiker_id='" . $_SESSION['gebruikers_id'] . "')
-        AND gebruikers.geslacht IN
+        AND gebruikers.geslacht=profielen.geintereseerd IN
           (SELECT profielen.geintereseerd
           FROM gebruikers
           LEFT JOIN profielen
             ON gebruikers.gebruiker_id=profielen.gebruikers_id)
+        AND NOT gebruikers.gebruiker_id='" . $_SESSION['gebruikers_id'] . "'
       ";
     $result = mysqli_query($db, $query) or die("FOUT: " . mysqli_error());
 
