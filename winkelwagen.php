@@ -132,9 +132,20 @@ if (1 ==1) // moet niet ingelogd
         LEFT JOIN events ON events.event_id=producten.event_id
         LEFT JOIN membership ON membership.membership_id=producten.membership_id WHERE producten.product_id IN ($str)";
 
+    
 
 
         $result = mysqli_query($db, $sql);
+        
+        
+        
+        $sql = "SELECT membership.korting as waarde FROM membership INNER JOIN members ON members.membership_id=membership.membership_id WHERE members.gebruiker_id = '".$_SESSION['gebruikers_id']."'";
+   
+     $results = mysqli_query($db, $sql);
+     
+  
+     $korting = mysqli_fetch_assoc($results);
+       
 
 
 
@@ -165,6 +176,7 @@ if (1 ==1) // moet niet ingelogd
 
                 while($product = mysqli_fetch_assoc($result))
                 {
+                    $prijs_totaal += $product['prijs'];
                   ?>
 
 
@@ -198,11 +210,57 @@ if (1 ==1) // moet niet ingelogd
 
 
 
-            </div>
-            <div class="panel-footer">
+           
+
+
+      <?php
+    }
+    ?>
+                 </div>
+               
+                            <div class="panel-footer">
               <div class="row text-center">
                 <div class="col-xs-9">
-                  <h4 class="text-right">Totaal <strong>50.00</strong></h4>
+                  <h4 class="text-right">Totaal <strong>
+                      <?php 
+                      
+                      
+                      
+                      
+                      
+                              
+                       if (!empty($korting['waarde'])){
+                           
+                           
+                          
+                           
+                          
+                           
+                           $waardeINT = intval($korting["waarde"]);
+                           
+                            
+                            $prijsMetKorting = (100-$waardeINT) / 100 * $prijs_totaal;
+                            ;
+                           echo " - ".$korting['waarde']." % KORTING:   ";
+                           echo $prijsMetKorting;
+                           
+                           
+                      
+                            
+                        }
+                        else {
+                            echo $prijs_totaal;
+                        }
+                                                        
+                              ?>
+                      
+                      
+                      
+                      
+                      </strong></h4>
+                  
+
+ 
                 </div>
                 <div class="col-xs-3">
                   <form action="betaald.php" method="post">
@@ -219,10 +277,9 @@ if (1 ==1) // moet niet ingelogd
           </div>
         </div>
       </div>
-
-      <?php
-    }
-    }
+                
+                <?php
+      }
     else {
       ?>
 

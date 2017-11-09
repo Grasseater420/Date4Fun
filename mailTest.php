@@ -1,16 +1,14 @@
 
 <?php
-$to = "k.t.c.gravenhorst@me.com";
-$subject = "This is subject";
-$message = "This is simple text message.";
-$header = "From:date4fun2017@gmail.com\r\n";
-$retval = mail ($to,$subject,$message,$header);
-if( $retval == true )
-{
-  echo "Message sent successfully...";
-}
-else
-{
-  echo "Message could not be sent...";
-}
+
+
+$headers = 'From: <JeMoeder@illuminatie.nl>' . "\r\n" .
+'Reply-To: <JeMoeder@illuminatie.nl';
+
+$test = mail('<jim.parengkuan@gmail.com>', 'Hey Geile Jongen', 'Wil je daten???', $headers,
+  '-fwebmaster@example.com');
+
+
+var_dump($test);
+
 ?>
