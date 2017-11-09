@@ -209,8 +209,15 @@ if (1 ==1) // moet niet ingelogd
 
 
 
-            </div>
-            <div class="panel-footer">
+           
+
+
+      <?php
+    }
+    ?>
+                 </div>
+               
+                            <div class="panel-footer">
               <div class="row text-center">
                 <div class="col-xs-9">
                   <h4 class="text-right">Totaal <strong>50.00</strong></h4>
@@ -238,9 +245,8 @@ if (1 ==1) // moet niet ingelogd
           </div>
         </div>
       </div>
-
-      <?php
-    }
+                
+                <?php
       }
     else {
       ?>
