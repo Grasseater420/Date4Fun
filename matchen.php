@@ -101,24 +101,27 @@
     // door gebruikers en profielen te joinen alleen de kandidaten opvragen
     // die geintereseerd zijn in mijn geslacht en waarvan het geslacht overeen
     // komt met mijn interesse.
+    // Tot slot wordt ingeval van homosexualiteit nog het eigen ID uitgesloten
+    // zodat je niet met jezelf gematched kan worden.
     //
     //////
 
     $query = "
       SELECT profielen.gebruikers_id, gebruikers.voornaam, profielen.foto, profielen.overmij
-      FROM gebruikers
-      INNER JOIN profielen
-        ON gebruikers.gebruiker_id=profielen.gebruikers_id
-        WHERE profielen.geintereseerd IN
-          (SELECT gebruikers.geslacht
-          FROM gebruikers
-            WHERE gebruikers.gebruiker_id='" . $_SESSION['gebruikers_id'] . "')
-        AND gebruikers.geslacht=profielen.geintereseerd IN
-          (SELECT profielen.geintereseerd
-          FROM gebruikers
-          LEFT JOIN profielen
-            ON gebruikers.gebruiker_id=profielen.gebruikers_id)
-        AND NOT gebruikers.gebruiker_id='" . $_SESSION['gebruikers_id'] . "'
+        FROM gebruikers
+        INNER JOIN profielen
+	         ON gebruikers.gebruiker_id=profielen.gebruikers_id
+		       WHERE profielen.geintereseerd IN
+			        (SELECT gebruikers.geslacht
+	       	     FROM gebruikers
+	       	     WHERE gebruikers.gebruiker_id='" . $_SESSION['gebruikers_id'] . "')
+	         AND gebruikers.geslacht IN
+			        (SELECT profielen.geintereseerd
+			         FROM gebruikers
+			         LEFT JOIN profielen
+				           ON gebruikers.gebruiker_id=profielen.gebruikers_id
+			       	 WHERE gebruikers.gebruiker_id='" . $_SESSION['gebruikers_id'] . "')
+          AND NOT gebruikers.gebruiker_id='" . $_SESSION['gebruikers_id'] . "'
       ";
     $result = mysqli_query($db, $query) or die("FOUT: " . mysqli_error());
 
