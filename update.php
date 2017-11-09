@@ -95,6 +95,22 @@ if(isset($_POST['aanpassenMem'])){
 
 elseif(isset($_POST['aanpassenEve'])){
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
+  if(empty($_POST['event_id'])){
+    echo "Event ID moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
+  }
+  //Waarde is niet leeg, test of het een int is
+  else{
+    $event_id = test_data($_POST['event_id']);
+    $event_id = (int)$event_id;
+    //Controleren of hij allen bestaat uit letters en spaties
+    if (!is_int($event_id)) {
+      echo "Membership ID moet een heel getal zijn!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
+    }
+  }
+
+
+
+  //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['titel'])){
     echo "Titel moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
@@ -344,8 +360,6 @@ elseif(isset($_POST['verwijderMem'])){
 elseif(isset($_POST['verwijderEve'])){
   $event_id = $_POST['event_id'];
   $query = "DELETE FROM events WHERE events.event_id = '".$event_id."'";
-
-  var_dump($query); die();
 
   $result = mysqli_query($db, $query);
 

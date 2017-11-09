@@ -1,4 +1,18 @@
 <!DOCTYPE HTML>
+
+
+
+
+<!--Pagina voor de admin(s). Admin kan membership toevoegen, aanpassen of verwijderen. Er dienen altijd drie memberships te bestaan, Brons, Zilver, Goud.
+Deze kunnen dan ook niet verwijderd worden. Wel aangepast. Zodra een nieuwe membership wordt toegevoegd kan deze wel worden verwijderd.
+
+Events kunnen ook toegevoegd, aangepast of verwijderd worden. Hier moeten er altijd twee van zijn. Zodra er drie of meer events zijn wordt er een verwijder knop bij
+ALLE events getoond.
+
+Gebruikers kunnen worden opgezocht, en alle gebruikers staan in een lijst. Per gebruiker kan het profiel worden bezocht, of kan de gebruiker verwijderd worden.
+
+Bestellingen staan in twee vakken, Memberships en events. Admins kunnen alle bestellingen hier bekijken.
+-->
 <html>
 <head>
   <!--<link rel="stylesheet" type="text/css" href="stylesheet.css">-->
@@ -9,8 +23,11 @@
   <title>Date4Fun Admin</title>
   <link rel="stylesheet" type="text/css" href="css.css">
 
+
+  <!--Functie voor de livesearch. De pagina hoeft niet herladen te worden als er gezocht wordt naar een gebruiker-->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
+
   function searchq(){
     var searchTxt = $("input[name='search']").val();
 
@@ -21,14 +38,32 @@
     });
   }
   </script>
+
+  <!--Het plaatje van Date4Fun staat boven aan-->
+  <style>
+      .jumbotron {
+    background-image: url("./header.jpg");
+    background-color: #17234E;
+    margin-bottom: 0;
+    min-height: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+</style>
 </head>
 <body>
   <?php
+  //De header pakt alle informatie betreffende sessies, en nav-bar
   include "header.php";
+
+  //Config voor de database connectie
   include "config.php";
+
   function laatMemZien(){
     //Connectie met de database
-    //Functie om membership_prijs te verkrijgen MOET NOG KOMEN
     include "config.php";
 
     //De Query om titel en omschrijving te verkijgen
@@ -82,7 +117,6 @@
 
   function laatEventZien(){
     //Connectie met de database
-    //Functie om membership_prijs te verkrijgen MOET NOG KOMEN
     include "config.php";
 
     //De Query om titel en omschrijving te verkijgen
@@ -92,8 +126,8 @@
     //Resultaten naar het scherm
     while($row = mysqli_fetch_assoc($result)){
       echo "
-      <div class='col-sm-4'>
-      <div class='card' style='width: 40rem;'>
+      <div class='col-sm-3'>
+      <div class='card' style='width: 20rem;'>
       <div class='card-body'>
       <h4 class='card-title'>".$row['titel']."</h4>
       <h6 class='card-subtitle mb-2 text-muted'>€".$row['prijs']."</h6>
@@ -141,11 +175,14 @@
   }
 
   function laatGebZien(){
+     //Connectie met de database
     include "config.php";
 
+    //De Query om gebruikerinfo te verkijgen
     $query = "SELECT gebruikers.gebruiker_id, gebruikers.voornaam, gebruikers.tussenv, gebruikers.achternaam, gebruikers.gebruikersnaam, gebruikers.email, gebruikers.geboortedatum FROM gebruikers";
     $result = mysqli_query($db, $query);
 
+    //Resultaten naar het scherm
     while ($row = mysqli_fetch_assoc($result)){
       echo "Naam: ".$row['voornaam']." ".$row['tussenv']." ".$row['achternaam']."<br>Gebruikersnaam: ".$row['gebruikersnaam']."<br>E-mail: ".$row['email']."<br>Geboortedatum: ".$row['geboortedatum']."<br>
       <form action='update.php' method='post'>
@@ -157,22 +194,28 @@
   }
 
   function laatBestelMemberZien(){
+    //Connectie met de database
     include "config.php";
 
+    //De Query om gebruikerinfo met membershipinfo te verkijgen
     $query = "SELECT gebruikers.gebruikersnaam, gebruikers.voornaam, gebruikers.tussenv, gebruikers.achternaam, bestellingen.product_id, bestellingen.besteldatum, membership.titel FROM gebruikers INNER JOIN bestellingen ON gebruikers.gebruiker_id=bestellingen.gebruiker_id INNER JOIN producten ON producten.product_id=bestellingen.product_id INNER JOIN membership ON producten.membership_id=membership.membership_id";
     $result = mysqli_query($db, $query);
 
+    //Resultaten naar het scherm
     while ($row = mysqli_fetch_assoc($result)){
       echo "Naam: ".$row['voornaam']." ".$row['tussenv']." ".$row['achternaam']."<br>Gebruikersnaam: ".$row['gebruikersnaam']."<br>Product-ID: ".$row['product_id']."<br>Besteldatum: ".$row['besteldatum']."<br>Titel: ".$row['titel']."<hr>";
     }
   }
 
   function laatBestelEventsZien(){
+    //Connectie met de database
     include "config.php";
 
+    //De query om gebruikerinfo met eventinfo te verkrijgen
     $query = "SELECT gebruikers.gebruikersnaam, gebruikers.voornaam, gebruikers.tussenv, gebruikers.achternaam, bestellingen.product_id, bestellingen.besteldatum, events.titel FROM gebruikers INNER JOIN bestellingen ON gebruikers.gebruiker_id=bestellingen.gebruiker_id INNER JOIN producten ON producten.product_id=bestellingen.product_id INNER JOIN events ON producten.event_id=events.event_id";
     $result = mysqli_query($db, $query);
 
+    //Resultaten naar het scherm
     while ($row = mysqli_fetch_assoc($result)){
       echo "Naam: ".$row['voornaam']." ".$row['tussenv']." ".$row['achternaam']."<br>Gebruikersnaam: ".$row['gebruikersnaam']."<br>Product-ID: ".$row['product_id']."<br>Besteldatum: ".$row['besteldatum']."<br>Titel: ".$row['titel']."<hr>";
     }
@@ -182,13 +225,14 @@
   renderJumbotron();
   ?>
 
-  <h2>Welkom Admin <!--naam--></h2>
+  <h2>Welkom Admin</h2>
 
   <!--Memberships gedeelte-->
   <div class="container">
     <h3>Memberships:</h3>
     <?php laatMemZien();?>
-    <div class="col-sm-3">
+    </div>
+    <div class="container">
       <h4>Membership toevoegen:</h4>
         <p>
           <button type="button" class="btn btn-default btn-lg" class="btn btn-primary" data-toggle="collapse" data-target="#memToevoegenCollapse" aria-expanded="false" aria-control="memToevoegenCollapse">
@@ -209,7 +253,7 @@
         </div>
         </div>
   </div>
-</div>
+
 
   <hr>
 
@@ -217,7 +261,8 @@
   <div class="container">
     <h3>Events:</h3>
     <?php  laatEventZien(); ?>
-  <div class="col-sm-4">
+      </div>
+  <div class="container">
     <h4>Event toevoegen:</h4>
       <p>
         <button type="button" class="btn btn-default btn-lg" class="btn btn-primary" data-toggle="collapse" data-target="#eveToevoegenCollapse" aria-expanded="false" aria-control="eveToevoegenCollapse">
@@ -234,9 +279,6 @@
       <tr><td>Locatie van event:</td><td> <input type="text" name="locatie"></td></tr>
       <tr><td>Datum van event:</td><td> <input type="date" name="datum"></td></tr>
       <tr><td>Event-Foto:</td><td> <input type="file" name="foto" accept=".png, .jpg, .jpeg"></td></tr>
-        <!--<form method="post" action="upload.php" enctype="multipart/form-data">
-          <input type="file" name="myimage">
-          <input type="submit" name="submit_image" value="Upload">-->
         </form>
       </td></td>
       <tr><td><input type="submit" name="toevoegenEve" value="Toevoegen"></td></tr>
@@ -245,10 +287,11 @@
       </div>
     </div>
   </div>
-  </div>
+
 
   <hr>
 
+  <!--Gebruiker zoeken gedeelte-->
   <div class="container">
     <div class="col-sm-6">
       <h3>Gebruiker zoeken:</h3>
@@ -271,6 +314,7 @@
       </div>
     </div>
 
+    <!--Gebruiker gedeelte-->
     <h3>Alle gebruikers:</h3>
     <div class="col-sm-6">
       <div class="pre-scrollable">
@@ -281,6 +325,7 @@
 
   <hr>
 
+  <!--Bestellingen gedeelte-->
   <div class="container">
     <h3>Bestellingen:</h3>
     <div class="col-sm-6">
