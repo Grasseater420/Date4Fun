@@ -28,7 +28,7 @@
       }
 
       if ($isAdmin == true) {
-        header("Location:testmem.php");
+        header("Location:admin_page.php");
 
         $_SESSION['isAdmin'] = true;
         exit();
