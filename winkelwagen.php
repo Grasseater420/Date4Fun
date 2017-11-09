@@ -132,9 +132,20 @@ if (1 ==1) // moet niet ingelogd
         LEFT JOIN events ON events.event_id=producten.event_id
         LEFT JOIN membership ON membership.membership_id=producten.membership_id WHERE producten.product_id IN ($str)";
 
+    
 
 
         $result = mysqli_query($db, $sql);
+        
+        
+        
+        $sql = "SELECT membership.korting as waarde FROM membership INNER JOIN members ON members.membership_id=membership.membership_id WHERE members.gebruiker_id = '".$_SESSION['gebruikers_id']."'";
+   
+     $results = mysqli_query($db, $sql);
+     
+  
+     $korting = mysqli_fetch_assoc($results);
+       
 
 
 
@@ -203,6 +214,14 @@ if (1 ==1) // moet niet ingelogd
               <div class="row text-center">
                 <div class="col-xs-9">
                   <h4 class="text-right">Totaal <strong>50.00</strong></h4>
+                  
+                                                   <?php
+                                                        if (!empty($korting['waarde'])){
+                                                            //echo "uw korting: ".$korting['waarde'];
+                            
+                                                        }
+                                                        ?>
+ 
                 </div>
                 <div class="col-xs-3">
                   <form action="betaald.php" method="post">
@@ -222,7 +241,7 @@ if (1 ==1) // moet niet ingelogd
 
       <?php
     }
-    }
+      }
     else {
       ?>
 
