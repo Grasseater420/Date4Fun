@@ -379,7 +379,7 @@
                 ON events.event_id=producten.event_id
                 INNER JOIN bestellingen
                 ON bestellingen.product_id=producten.product_id
-                WHERE bestellingen.gebruiker_id='" . $_SESSION['gebruikers_id'] . "'
+                WHERE bestellingen.gebruiker_id='" . $_GET['id'] . "'
                 AND producten.event_id IS NOT NULL
               ";
               $result = mysqli_query($db, $query);
