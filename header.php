@@ -216,7 +216,16 @@
 
     echo "<div class=\"container\">
             <div class=\"jumbotron\">
-              <h1>Date4Fun</h1>
+              <h1 style=\"margin-bottom:22px\">Date4Fun</h1>
+            </div>
+          </div>";
+  }
+
+  function renderJumbotronMatchen() {
+
+    echo "<div class=\"container\">
+            <div class=\"jumbotron\">
+              <h1 style=\"margin-bottom:22px\">Date4Fun<a href=\"./matchen.php\" style=\"padding-left:17px; padding-right:17px; margin-top:10px\" class=\"btn btn-default pull-right\" role=\"button\"><h4>Nieuwe Match</h4></a></h1>
             </div>
           </div>";
   }
