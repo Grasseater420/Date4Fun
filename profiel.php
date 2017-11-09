@@ -106,13 +106,15 @@
         <ul class="list-group">
           <li class="list-group-item text-muted" contenteditable="false"><h4>Profiel
             <?php
-            if($_SESSION['gebruikers_id']){
-
-
+            if($eigenprofiel){
              ?>
             <!--Modal Trigger-->
             <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#geinAanpassen">Aanpassen</button></h4></li>
-          <?php } ?>
+          <?php }
+          else {
+            echo "</h4>";
+          }
+          ?>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Vandaag</li>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Echte naam</strong></span> <?php echo $gebruiker['voornaam']; ?></li>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Geïnteresseerd in: </strong></span> <?php echo $profiel['geintereseerd']; ?>
@@ -152,9 +154,17 @@
         <!--left col-->
         <ul class="list-group">
           <li class="list-group-item text-muted" contenteditable="false"><h4>Uiterlijk
+            <?php
+            if($eigenprofiel){
+             ?>
             <!--Modal Trigger-->
             <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#uiterlijkAanpassen">Aanpassen</button></h4></li>
+            <?php }
+            else{
+              echo "</h4>";
+            }
 
+            ?>
             <!-- Modal -->
             <div id="uiterlijkAanpassen" class="modal fade" role="dialog">
               <div class="modal-dialog">
@@ -186,8 +196,17 @@
 
         <ul class="list-group">
           <li class="list-group-item text-muted" contenteditable="false"><h4>Gewoonten
+            <?php
+            if($eigenprofiel){
+             ?>
             <!--Modal Trigger-->
             <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#gewoonAanpassen">Aanpassen</button></h4></li>
+            <?php }
+            else{
+              echo "</h4>";
+            }
+
+            ?>
 
             <!-- Modal -->
             <div id="gewoonAanpassen" class="modal fade" role="dialog">
@@ -220,8 +239,17 @@
 
         <ul class="list-group">
           <li class="list-group-item text-muted" contenteditable="false"><h4>Favorieten
+            <?php
+            if($eigenprofiel){
+             ?>
             <!--Modal Trigger-->
             <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#favoAanpassen">Aanpassen</button></h4></li>
+            <?php }
+            else{
+              echo "</h4>";
+            }
+
+            ?>
 
             <!-- Modal -->
             <div id="favoAanpassen" class="modal fade" role="dialog">
@@ -290,8 +318,17 @@
     <div class="col-sm-9" style="" contenteditable="false">
       <div class="panel panel-default">
         <div class="panel-heading"><h3>Over mij
+          <?php
+          if($eigenprofiel){
+           ?>
           <!--Modal Trigger-->
-          <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#mijAanpassen">Aanpassen</button></h4></li>
+          <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#mijAanpassen">Aanpassen</button></h4></li>
+          <?php }
+          else{
+            echo "</h4>";
+          }
+
+          ?>
 
           <!-- Modal -->
           <div id="mijAanpassen" class="modal fade" role="dialog">

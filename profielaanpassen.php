@@ -17,7 +17,7 @@ elseif(isset($_POST['vrouw'])){
   header( "refresh:2;url=./profiel.php?id=".$_SESSION['gebruikers_id']."" );
 }
 
-elseif(isset($_POST['profielsubmit'])){
+elseif(isset($_POST['uiterlijksubmit'])){
   $etni = $_POST['etniAanpassen'];
   $lichaam = $_POST['lichaamAanpassen'];
   $query = "UPDATE profielen SET etniciteit='".$etni."', lichaam='".$lichaam."' WHERE gebruikers_id='".$_SESSION['gebruikers_id']."'";
