@@ -104,11 +104,20 @@
       <div class="col-sm-3">
         <!--left col-->
         <ul class="list-group">
-          <li class="list-group-item text-muted" contenteditable="false"><h4>Profiel<button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#geinAanpassen">Aanpassen</button></h4></li>
+          <li class="list-group-item text-muted" contenteditable="false"><h4>Profiel
+            <?php
+            if($eigenprofiel){
+             ?>
+            <!--Modal Trigger-->
+            <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#geinAanpassen">Aanpassen</button></h4></li>
+          <?php }
+          else {
+            echo "</h4>";
+          }
+          ?>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Vandaag</li>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Echte naam</strong></span> <?php echo $gebruiker['voornaam']; ?></li>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Geïnteresseerd in: </strong></span> <?php echo $profiel['geintereseerd']; ?>
-            <!--Modal Trigger-->
 
 
             <!-- Modal -->
@@ -122,9 +131,8 @@
                     <h4 class="modal-title pull-left">Interesse aanpassen</h4>
                   </div>
                   <div class="modal-body pull-left">
-                    <form action="profiel.php?id=<?php echo $gebruiker_id ?>" method="post">
-                      <table style="border-collapse: separate;
-    border-spacing: 10px;">
+                    <form action="profielaanpassen.php" method="post">
+                      <table style="border-collapse: separate; border-spacing: 10px;">
                         <tr>
                           <td>Geïnteresseerd in: </td>
                           <td><button type="submit" name="man" class="btn btn-primary btn-btn-xs">Mannen</button></td>
@@ -145,163 +153,157 @@
 
         <!--left col-->
         <ul class="list-group">
-          <li class="list-group-item text-muted" contenteditable="false"><h4>Uiterlijk</h></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Ethniciteit</strong></span> <?php echo $profiel['etniciteit']; ?></li>
+          <li class="list-group-item text-muted" contenteditable="false"><h4>Uiterlijk
+            <?php
+            if($eigenprofiel){
+             ?>
             <!--Modal Trigger-->
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#geinAanpassen">Aanpassen</button>
+            <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#uiterlijkAanpassen">Aanpassen</button></h4></li>
+            <?php }
+            else{
+              echo "</h4>";
+            }
 
+            ?>
             <!-- Modal -->
-            <div id="geinAanpassen" class="modal fade" role="dialog">
+            <div id="uiterlijkAanpassen" class="modal fade" role="dialog">
               <div class="modal-dialog">
 
                 <!-- Modal gedeelte-->
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title pull-left">Interesse aanpassen</h4>
+                    <h4 class="modal-title pull-left">Uiterlijk aanpassen</h4>
                   </div>
                   <div class="modal-body pull-left">
-                    <p>Geïnteresseerd in:</p>
+                    <form action="profielaanpassen.php" method="post">
+                      <p>Etniciteit: </p><input type="text" name="etniAanpassen">
+                      <p><br>Lichaamsbouw: </p><input type="text" name="lichaamAanpassen">
+                      <br><br>
+                      <button type="submit" name="uiterlijksubmit" class="btn btn-primay">Aanpassen</button>
+                    </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   </div>
                 </div>
-
               </div>
             </div>
+
+            <li class="list-group-item text-right"><span class="pull-left"><strong class="">Etniciteit</strong></span> <?php echo $profiel['etniciteit']; ?></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong class="">Lichaamsbouw</strong></span> <?php echo $profiel['lichaam']; ?></li>
-            <!--Modal Trigger-->
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#geinAanpassen">Aanpassen</button>
-
-            <!-- Modal -->
-            <div id="geinAanpassen" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-
-                <!-- Modal gedeelte-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title pull-left">Interesse aanpassen</h4>
-                  </div>
-                  <div class="modal-body pull-left">
-                    <p>Geïnteresseerd in:</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
           </li>
         </ul>
 
         <ul class="list-group">
-          <li class="list-group-item text-muted" contenteditable="false"><h4>Gewoonten</h4></li>
+          <li class="list-group-item text-muted" contenteditable="false"><h4>Gewoonten
+            <?php
+            if($eigenprofiel){
+             ?>
+            <!--Modal Trigger-->
+            <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#gewoonAanpassen">Aanpassen</button></h4></li>
+            <?php }
+            else{
+              echo "</h4>";
+            }
+
+            ?>
+
+            <!-- Modal -->
+            <div id="gewoonAanpassen" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal gedeelte-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title pull-left">Gewoontes aanpassen</h4>
+                  </div>
+                  <div class="modal-body pull-left">
+                    <form action="profielaanpassen.php" method="post">
+                      <p>Roken: </p><input type="text" name="rookAanpassen">
+                      <p><br>Drinken: </p><input type="text" name="drinkAanpassen">
+                      <br><br>
+                      <button type="submit" name="gewoonsubmit" class="btn btn-primay">Aanpassen</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                  </div>
+                </div>
+              </div>
+            </div>
+
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Roken</strong></span> <?php echo $profiel['roken']; ?></li>
-          <!--Modal Trigger-->
-          <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#geinAanpassen">Aanpassen</button>
-
-          <!-- Modal -->
-          <div id="geinAanpassen" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-              <!-- Modal gedeelte-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title pull-left">Interesse aanpassen</h4>
-                </div>
-                <div class="modal-body pull-left">
-                  <p>Geïnteresseerd in:</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-
-            </div>
-          </div>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Drinken</strong></span> <?php echo $profiel['drinken']; ?></li>
-          <!--Modal Trigger-->
-          <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#geinAanpassen">Aanpassen</button>
-
-          <!-- Modal -->
-          <div id="geinAanpassen" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-              <!-- Modal gedeelte-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title pull-left">Interesse aanpassen</h4>
-                </div>
-                <div class="modal-body pull-left">
-                  <p>Geïnteresseerd in:</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
         </li>
-        </ul
+      </ul>
 
         <ul class="list-group">
-          <li class="list-group-item text-muted" contenteditable="false"><h4>Favorieten</h4></li>
+          <li class="list-group-item text-muted" contenteditable="false"><h4>Favorieten
+            <?php
+            if($eigenprofiel){
+             ?>
+            <!--Modal Trigger-->
+            <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#favoAanpassen">Aanpassen</button></h4></li>
+            <?php }
+            else{
+              echo "</h4>";
+            }
+
+            ?>
+
+            <!-- Modal -->
+            <div id="favoAanpassen" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal gedeelte-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title pull-left">Favorieten aanpassen</h4>
+                  </div>
+                  <div class="modal-body pull-left">
+
+                    <form action="profielaanpassen.php" method="post">
+                      <p>Film: </p>
+                      <select name="filmAanpassen">
+                        <?php
+                        $query = "SELECT favorietefilm.titel FROM favorietefilm";
+                        $result = mysqli_query($db, $query);
+                        $id = 1;
+                        while ($row = mysqli_fetch_assoc($result)){
+                          foreach($row as $rows){
+                            echo "<option value='".$id."'>".$rows."</option>";
+                            $id++;
+                          }
+                        }
+                        ?>
+                      </select>
+                      <p><br>Muziek: </p>
+                      <select name="muziekAanpassen">
+                        <?php
+                        $query = "SELECT favorietemuziek.titel FROM favorietemuziek";
+                        $result = mysqli_query($db, $query);
+
+                        $id = 1;
+                        while ($row = mysqli_fetch_assoc($result)){
+                          foreach($row as $rows){
+                            echo "<option value='".$id."'>".$rows."</option>";
+                            $id++;
+                          }
+                        }
+                        ?>
+                      </select>
+                      <br><br>
+                      <button type="submit" name="filmmuzieksubmit" class="btn btn-primay">Aanpassen</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                  </div>
+                </div>
+              </div>
+            </div>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Film</strong></span> <?php echo $film['titel']; ?></li>
-          <!--Modal Trigger-->
-          <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#geinAanpassen">Aanpassen</button>
-
-          <!-- Modal -->
-          <div id="geinAanpassen" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-              <!-- Modal gedeelte-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title pull-left">Interesse aanpassen</h4>
-                </div>
-                <div class="modal-body pull-left">
-                  <p>Geïnteresseerd in:</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-
-            </div>
-          </div>
           <li class="list-group-item text-right"><span class="pull-left"><strong class="">Muziek</strong></span> <?php echo $muziek['titel']; ?></li>
-          <!--Modal Trigger-->
-          <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#geinAanpassen">Aanpassen</button>
-
-          <!-- Modal -->
-          <div id="geinAanpassen" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-              <!-- Modal gedeelte-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title pull-left">Interesse aanpassen</h4>
-                </div>
-                <div class="modal-body pull-left">
-                  <p>Geïnteresseerd in:</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-
-            </div>
-          </div>
 
         </li>
         </ul
@@ -315,7 +317,44 @@
     <!--/col-3-->
     <div class="col-sm-9" style="" contenteditable="false">
       <div class="panel panel-default">
-        <div class="panel-heading"><h3>Over mij</h3></div>
+        <div class="panel-heading"><h3>Over mij
+          <?php
+          if($eigenprofiel){
+           ?>
+          <!--Modal Trigger-->
+          <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#mijAanpassen">Aanpassen</button></h4></li>
+          <?php }
+          else{
+            echo "</h4>";
+          }
+
+          ?>
+
+          <!-- Modal -->
+          <div id="mijAanpassen" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal gedeelte-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title pull-left">Over Mij aanpassen</h4>
+                </div>
+                <div class="modal-body pull-left">
+                  <form action="profielaanpassen.php" method="post">
+                    <input style="width:500px; height:200px;" type="text" cols="80" rows="100" name="overmij">
+                    <br><br>
+                    <button type="submit" name="overmijsubmit" class="btn btn-primay">Aanpassen</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </h3></div>
         <div class="panel-body"> <blockquote class="blockquote"> <?php echo $profiel['overmij']; ?> </blockquote>
 
         </div>
@@ -717,19 +756,6 @@ _qevents.push({
 
 <script src="/plugins/bootstrap-pager.js"></script>
 </div>
-
-
-<?php
-if(isset($_POST['man'])){
-  $query = "UPDATE profielen SET geintereseerd='Man' WHERE gebruikers_id='".$gebruiker_id."'";
-  $result = mysqli_query($db, $query);
-}
-
-elseif(isset($_POST['vrouw'])){
-  $query = "UPDATE profielen SET geintereseerd='Vrouw' WHERE gebruikers_id='".$gebruiker_id."'";
-  $result = mysqli_query($db, $query);
-}
- ?>
 
 </body>
 
