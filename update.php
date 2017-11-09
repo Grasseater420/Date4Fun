@@ -15,7 +15,7 @@ if(isset($_POST['aanpassenMem'])){
 
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['membership_id'])){
-    echo "Membership ID moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Membership ID moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, test of het een int is
   else{
@@ -23,39 +23,39 @@ if(isset($_POST['aanpassenMem'])){
     $membership_id = (int)$membership_id;
     //Controleren of hij allen bestaat uit letters en spaties
     if (!is_int($membership_id)) {
-      echo "Membership ID moet een heel getal zijn!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Membership ID moet een heel getal zijn!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['titel'])){
-    echo "Titel moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Titel moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, via functie test_data foutieve data omzetten tot correcte database
   else{
     $titel = test_data($_POST['titel']);
     //Controleren of hij allen bestaat uit letters en spaties
     if (!preg_match("/^[a-zA-Z ]*$/",$titel)) {
-      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['omschrijving'])){
-    echo "Omschrijving moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Omschrijving moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, via functie test_data foutieve data omzetten tot correcte database
   else{
     $omschrijving = test_data($_POST['omschrijving']);
     //Controleren of hij allen bestaat uit letters en spaties
     if (!preg_match("/^[a-zA-Z ]*$/",$omschrijving)) {
-      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['prijs'])){
-    echo "Prijs moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Prijs moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, test of prijs een kommagetal is
   else{
@@ -63,13 +63,13 @@ if(isset($_POST['aanpassenMem'])){
     $prijs = (float)$prijs;
     //Controleren of hij allen bestaat uit letters en spaties
     if (!is_float($prijs)) {
-      echo "Prijs moet een getal zijn!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Prijs moet een getal zijn!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
     //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
     if(empty($_POST['korting'])){
-      echo "Korting moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Korting moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
     //Waarde is niet leeg, test of prijs een kommagetal is
     else{
@@ -77,7 +77,7 @@ if(isset($_POST['aanpassenMem'])){
       $korting = (int)$korting;
       //Controleren of hij allen bestaat uit letters en spaties
       if (!is_int($korting)) {
-        echo "Korting moet een heel getal zijn, zonder % teken!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+        echo "Korting moet een heel getal zijn, zonder % teken!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
       }
     }
 
@@ -89,41 +89,40 @@ if(isset($_POST['aanpassenMem'])){
       $result = mysqli_query($db, $query);
 
       echo "Het membership is aangepast!";
-      echo "<a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a>";
+      echo "<a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a>";
     }
   }
 
 elseif(isset($_POST['aanpassenEve'])){
-  var_dump($_POST['foto']); die();
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['titel'])){
-    echo "Titel moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Titel moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, via functie test_data foutieve data omzetten tot correcte database
   else{
     $titel = test_data($_POST['titel']);
     //Controleren of hij allen bestaat uit letters en spaties
     if (!preg_match("/^[a-zA-Z ]*$/",$titel)) {
-      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['omschrijving'])){
-    echo "Omschrijving moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Omschrijving moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, via functie test_data foutieve data omzetten tot correcte database
   else{
     $omschrijving = test_data($_POST['omschrijving']);
     //Controleren of hij allen bestaat uit letters en spaties
     if (!preg_match("/^[a-zA-Z ]*$/",$omschrijving)) {
-      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['prijs'])){
-    echo "Prijs moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Prijs moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, test of prijs een kommagetal is
   else{
@@ -131,25 +130,25 @@ elseif(isset($_POST['aanpassenEve'])){
     $prijs = (float)$prijs;
     //Controleren of hij allen bestaat uit letters en spaties
     if (!is_float($prijs)) {
-      echo "Prijs moet een getal zijn!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Prijs moet een getal zijn!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
     //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
     if(empty($_POST['locatie'])){
-      echo "Locatie moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Locatie moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
     //Waarde is niet leeg, test of prijs een kommagetal is
     else{
       $locatie = test_data($_POST['locatie']);
       //Controleren of hij allen bestaat uit letters en spaties
       if (!preg_match("/^[a-zA-Z ]*$/",$locatie)) {
-        echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+        echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
       }
     }
 
     if(empty($_POST['datum'])){
-      echo "Datum moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Datum moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
     //Waarde is niet leeg, test of prijs een kommagetal is
     else{
@@ -164,40 +163,40 @@ elseif(isset($_POST['aanpassenEve'])){
       $result = mysqli_query($db, $query);
 
       echo "Het event is aangepast!";
-      echo "<a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a>";
+      echo "<a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a>";
     }
 }
 
 elseif(isset($_POST['toevoegenMem'])){
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['titel'])){
-    echo "Titel moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Titel moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, via functie test_data foutieve data omzetten tot correcte database
   else{
     $titel = test_data($_POST['titel']);
     //Controleren of hij allen bestaat uit letters en spaties
     if (!preg_match("/^[a-zA-Z ]*$/",$titel)) {
-      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['omschrijving'])){
-    echo "Omschrijving moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Omschrijving moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, via functie test_data foutieve data omzetten tot correcte database
   else{
     $omschrijving = test_data($_POST['omschrijving']);
     //Controleren of hij allen bestaat uit letters en spaties
     if (!preg_match("/^[a-zA-Z ]*$/",$omschrijving)) {
-      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['prijs'])){
-    echo "Prijs moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Prijs moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, test of prijs een kommagetal is
   else{
@@ -205,13 +204,13 @@ elseif(isset($_POST['toevoegenMem'])){
     $prijs = (float)$prijs;
     //Controleren of hij allen bestaat uit letters en spaties
     if (!is_float($prijs)) {
-      echo "Prijs moet een getal zijn!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Prijs moet een getal zijn!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
     //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
     if(empty($_POST['korting'])){
-      echo "Korting moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Korting moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
     //Waarde is niet leeg, test of prijs een kommagetal is
     else{
@@ -219,7 +218,7 @@ elseif(isset($_POST['toevoegenMem'])){
       $korting = (int)$korting;
       //Controleren of hij allen bestaat uit letters en spaties
       if (!is_int($korting)) {
-        echo "Korting moet een heel getal zijn, zonder % teken!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+        echo "Korting moet een heel getal zijn, zonder % teken!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
       }
     }
 
@@ -238,7 +237,7 @@ elseif(isset($_POST['toevoegenMem'])){
       $result = mysqli_query($db, $query);
 
       echo "Het membership is toegevoegd!";
-      echo "<a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a>";
+      echo "<a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a>";
     }
 }
 
@@ -246,33 +245,33 @@ elseif(isset($_POST['toevoegenEve'])){
 
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['titel'])){
-    echo "Titel moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Titel moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, via functie test_data foutieve data omzetten tot correcte database
   else{
     $titel = test_data($_POST['titel']);
     //Controleren of hij allen bestaat uit letters en spaties
     if (!preg_match("/^[a-zA-Z ]*$/",$titel)) {
-      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['omschrijving'])){
-    echo "Omschrijving moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Omschrijving moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, via functie test_data foutieve data omzetten tot correcte database
   else{
     $omschrijving = test_data($_POST['omschrijving']);
     //Controleren of hij allen bestaat uit letters en spaties
     if (!preg_match("/^[a-zA-Z ]*$/",$omschrijving)) {
-      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
   //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
   if(empty($_POST['prijs'])){
-    echo "Prijs moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+    echo "Prijs moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
   }
   //Waarde is niet leeg, test of prijs een kommagetal is
   else{
@@ -280,25 +279,25 @@ elseif(isset($_POST['toevoegenEve'])){
     $prijs = (float)$prijs;
     //Controleren of hij allen bestaat uit letters en spaties
     if (!is_float($prijs)) {
-      echo "Prijs moet een getal zijn!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Prijs moet een getal zijn!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
   }
 
     //Per ingevulde waarde controleren of deze leeg is, zo ja dan error sturen
     if(empty($_POST['locatie'])){
-      echo "Locatie moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Locatie moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
     //Waarde is niet leeg, test of prijs een kommagetal is
     else{
       $locatie = test_data($_POST['locatie']);
       //Controleren of hij allen bestaat uit letters en spaties
       if (!preg_match("/^[a-zA-Z ]*$/",$locatie)) {
-        echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+        echo "Alleen letters en spaties zijn toegestaan!</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
       }
     }
 
     if(empty($_POST['datum'])){
-      echo "Datum moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Datum moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
     //Waarde is niet leeg, test of prijs een kommagetal is
     else{
@@ -306,7 +305,7 @@ elseif(isset($_POST['toevoegenEve'])){
     }
 
     if(!file_exists($_FILES['foto']['tmp_name']) || !is_uploaded_file($_FILES['foto']['tmp_name'])){
-      echo "Foto moet een waarde hebben.</br><a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a><br>";
+      echo "Foto moet een waarde hebben.</br><a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a><br>";
     }
 
     if(!empty($_POST['titel']) && !empty($_POST['omschrijving']) && !empty($_POST['prijs']) && !empty($_POST['locatie']) && !empty($_POST['datum']) && file_exists($_FILES['foto']['tmp_name'])){
@@ -326,7 +325,7 @@ elseif(isset($_POST['toevoegenEve'])){
       $result = mysqli_query($db, $query);
 
       echo "Het event is toegevoegd!";
-      echo "<a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a>";
+      echo "<a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a>";
     }
 
 
@@ -339,17 +338,19 @@ elseif(isset($_POST['verwijderMem'])){
   $result = mysqli_query($db, $query);
 
   echo "Het membership is verwijderd!";
-  echo "<a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a>";
+  echo "<a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a>";
 }
 
 elseif(isset($_POST['verwijderEve'])){
   $event_id = $_POST['event_id'];
-  $query = "DELETE FROM events WHERE events.event_id = $event_id";
+  $query = "DELETE FROM events WHERE events.event_id = '".$event_id."'";
+
+  var_dump($query); die();
 
   $result = mysqli_query($db, $query);
 
   echo "Het event is verwijderd!";
-  echo "<a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a>";
+  echo "<a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a>";
 }
 
 elseif(isset($_POST['verwijderen'])){
@@ -366,10 +367,10 @@ elseif(isset($_POST['verwijderen'])){
   <form action='update.php' method='post'>
   <input type='hidden' name='gebruiker_id' value='".$gebruiker_id."'>
   <input type='submit' name='ja' value='Ja'>
-  <a href='http://localhost/Date4Fun/testmem.php'>Nee</a>
+  <a href='http://localhost/Date4Fun/admin_page.php'>Nee</a>
   </form>";
 
-  echo "<a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a>";
+  echo "<a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a>";
 }
 
 elseif(isset($_POST['ja'])){
@@ -379,7 +380,7 @@ elseif(isset($_POST['ja'])){
   $result = mysqli_query($db, $query);
 
   echo "De gebruiker is verwijderd!";
-  echo "<a href='http://localhost/Date4Fun/testmem.php'>Terug naar admin</a>";
+  echo "<a href='http://localhost/Date4Fun/admin_page.php'>Terug naar admin</a>";
 }
 
 
